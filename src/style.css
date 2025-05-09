@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@import "tailwindcss/preflight";
+@theme {
+  --color-buttonBg: #04aa6d;
+}
+
+.hr {
+  @apply mb-6 border border-solid border-gray-100;
+}
+
+input[type="text"],
+input[type="password"] {
+  @apply mt-1.25 mr-0 mb-5.5 ml-0 inline-block w-[90%] border-none bg-amber-50 p-4 focus:bg-[#ddd] focus:outline-none;
+}
+
+button {
+  @apply mx-0 my-2 cursor-pointer border-none bg-green-700 px-5 py-3.5 text-white opacity-90 hover:opacity-100;
+}
+#cancelbtn {
+  @apply bg-[#f44336] px-5 py-3.5;
+}
+
+#cancelbtn,
+#signupbtn {
+  @apply float-left w-[50%];
+}
