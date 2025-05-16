@@ -13,7 +13,6 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     rules: {
       "no-unused-vars": "warn",
-
     }
   }
 ]);

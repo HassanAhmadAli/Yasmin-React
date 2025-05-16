@@ -1,0 +1,41 @@
+import { useNavigate } from "react-router";
+import * as React from "react";
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+
+export function AppNavigationMenu() {
+  const navigate = useNavigate();
+  const navigationMenuTriggerStyle_ = navigationMenuTriggerStyle();
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink
+            onClick={() => {
+              navigate("/");
+            }}
+            className={navigationMenuTriggerStyle_}
+          >
+            Home
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink
+            onClick={() => {
+              navigate("/about");
+            }}
+            className={navigationMenuTriggerStyle_}
+          >
+            About
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}

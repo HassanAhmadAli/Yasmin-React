@@ -1,13 +1,7 @@
 import React from "react";
+import "@/index.css";
 
-
-import "./style.css";
-function App() {
-  return (
-    <>
-      <div></div>
-    </>
-  );
+import AppRoutes from "./routes";
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App;
