@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@/utils/http";
 import { toast } from "sonner";
 import React from "react";
 export async function handleSubmit(
@@ -8,7 +8,6 @@ export async function handleSubmit(
 ) {
   formEvent.preventDefault();
   setIsSubmitting(true);
-
   const formData = new FormData(formEvent.currentTarget);
   const userData = {
     name: formData.get("username"),
@@ -22,7 +21,7 @@ export async function handleSubmit(
     setIsSubmitting(false);
     return;
   }
-  const p1 = axios.post("/api/signup", userData);
+  const p1 = axiosInstance.post("/api/signup", userData);
   toast.loading("Registering...");
   try {
     const response = await p1;
