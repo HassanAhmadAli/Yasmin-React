@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 // Menu items.
 const items = [
   {
@@ -55,6 +55,7 @@ const userImage = "https://github.com/shadcn.png";
 const userName = "Hassan Ali";
 
 export function AppSidebar({ children }: { children: React.ReactNode }) {
+  const navigation = useNavigate();
   return (
     <SidebarProvider>
       <Sidebar className="">
@@ -91,7 +92,13 @@ export function AppSidebar({ children }: { children: React.ReactNode }) {
                   <DropdownMenuItem className="cursor-pointer">
                     <span>Profile</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      navigation("/login");
+                      localStorage.removeItem("token");
+                    }}
+                  >
                     <span>Log out</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>

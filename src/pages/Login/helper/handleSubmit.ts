@@ -25,7 +25,7 @@ export async function handleSubmit(
     toast.success("logged in successfully");
     localStorage.setItem("token", response.data.token);
 
-    navigate("/Login");
+    navigate("/");
   } catch (err: any) {
     const errorMessage =
       err.response?.data?.message || "An error occurred during Authentication";

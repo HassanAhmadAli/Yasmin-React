@@ -92,7 +92,7 @@ export default function CardWithForm() {
                   navigate("/signup");
                 }}
               >
-                Signup Instead
+                Sign Up Instead
               </Button>
               <TooltipProvider>
                 <Tooltip>

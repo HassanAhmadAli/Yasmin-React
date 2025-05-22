@@ -26,7 +26,7 @@ export function SelectDemo({
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Search Property</SelectLabel>
-          <SelectItem value="any">Search by Any Property</SelectItem>
+          <SelectItem value="any">Search by Any Field {"  "}</SelectItem>
           <SelectItem value="name">Search by Name</SelectItem>
           <SelectItem value="email">Search by Email</SelectItem>
           <SelectItem value="address">Search by Address</SelectItem>
