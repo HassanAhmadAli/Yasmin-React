@@ -46,7 +46,7 @@ interface Company {
 }
 
 interface User {
-  id: number;
+  _id: number;
   name: string;
   username: string;
   email: string;

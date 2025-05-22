@@ -39,7 +39,7 @@ const RealCellContent = ({
       <div className="space-y-4">
         {header}
         {filteredUsers.map((user) => (
-          <Card key={user.id}>
+          <Card key={user._id}>
             <CardHeader>
               <CardTitle className="text-lg">{user.name}</CardTitle>
             </CardHeader>
@@ -66,7 +66,7 @@ const RealCellContent = ({
         {header}
         <TableBody>
           {filteredUsers.map((user) => (
-            <TableRow key={user.id}>
+            <TableRow key={user._id}>
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell className="">{user.email}</TableCell>
               <TableCell className="hidden md:table-cell">{`${user.address.city}, ${user.address.street}`}</TableCell>
