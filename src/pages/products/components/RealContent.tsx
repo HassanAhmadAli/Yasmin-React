@@ -17,7 +17,11 @@ import { Label } from "@/components/ui/label";
 
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 function RatingDialog() {
+  const [rating, setRating] = React.useState(0);
+  const [comment, setComment] = React.useState("");
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,38 +29,45 @@ function RatingDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>we value your Opinion</DialogDescription>
+          <DialogTitle>Add Rating</DialogTitle>
+          <DialogDescription>We value your opinion</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
+            <Label htmlFor="comment" className="text-right">
+              Comment
             </Label>
             <Input
-              id="name"
-              defaultValue="Pedro Duarte"
+              id="comment"
+              placeholder="Enter your comment"
               className="col-span-3"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
+            <Label className="text-right">Rating</Label>
+            <div className="col-span-3 flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  className={`h-6 w-6 cursor-pointer ${
+                    rating >= star ? "fill-orange-400 text-orange-400" : "fill-white-400 text-orange-400"
+                  }`}
+                  onClick={() => setRating(star)}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Submit Rating</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
+
 const RealCellContent = ({
   products,
 }: {
