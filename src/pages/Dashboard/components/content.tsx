@@ -9,10 +9,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import axiosInstance from "@/utils/http";
 import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
+import { handleSearchRequest } from "../helper/requests";
 interface Address {
   street: string;
   suite: string;
@@ -60,10 +60,12 @@ export function Content() {
   const handleSearch = React.useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get(
-        `/api/customer/page/${paginationNumber}`,
+      const data = await handleSearchRequest(
+        paginationNumber,
+        searchType,
+        searchTerm,
       );
-      const data = response.data;
+
       setUsers(data);
     } catch (error: any) {
       console.error("Error fetching users:", error.message);
