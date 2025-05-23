@@ -47,7 +47,8 @@ export function Content() {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
   const [paginationNumber, setPaginationNumber] = useState(1);
-  const [searchByTerm, setSearchBy] = React.useState("any");
+  const [searchType, setSearchType] = React.useState("any");
+  const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -56,26 +57,37 @@ export function Content() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [window.innerWidth]);
+  React.useEffect(() => {
+    setPaginationNumber(1);
+  }, [searchType, setSearchType]);
 
   React.useEffect(() => {
+    setIsLoading(true);
     const fetchUsers = async () => {
-      const response = await axiosInstance.get(
-        `/api/customer/page/${paginationNumber}`,
-      );
-      const data = response.data;
-      setUsers(data);
+      try {
+        const response = await axiosInstance.get(
+          `/api/customer/page/${paginationNumber}`,
+        );
+        const data = response.data;
+        setUsers(data);
+      } catch (error: any) {
+        console.error("Error fetching users:", error.message);
+        setUsers([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchUsers();
-  }, [paginationNumber]);
+  }, [paginationNumber, searchType, searchTerm]);
 
   return (
     <div className="w-full space-y-2">
       <SearchArea
-        setSearchBy={setSearchBy}
+        setSearchBy={setSearchType}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      {users.length === 0 ? (
+      {isLoading ? (
         <SkeletonContent isMobile={isMobile} />
       ) : (
         <RealCellContent isMobile={isMobile} users={users} />
@@ -90,6 +102,7 @@ export function Content() {
                   onClick={() => {
                     setPaginationNumber(paginationNumber - 1);
                   }}
+                  disabled={isLoading}
                 >
                   <PaginationPrevious />
                 </button>
@@ -118,6 +131,7 @@ export function Content() {
               onClick={() => {
                 setPaginationNumber(paginationNumber + 1);
               }}
+              disabled={isLoading}
             >
               <PaginationNext />
             </button>
