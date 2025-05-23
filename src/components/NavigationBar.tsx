@@ -35,6 +35,16 @@ export function AppNavigationMenu() {
             About
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink
+            onClick={() => {
+              navigate("/products");
+            }}
+            className={navigationMenuTriggerStyle_}
+          >
+            Products
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

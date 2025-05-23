@@ -6,7 +6,7 @@ import { Dashboard } from "@/pages/Dashboard/index";
 
 import { Login } from "@/pages/Login/index";
 import { Doc } from "@/pages/about/index";
-
+import { ProductsPage } from "@/pages/products/index";
 export default function Router() {
   return (
     <Routes>
@@ -14,6 +14,7 @@ export default function Router() {
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/about" element={<Doc />} />
+      <Route path="/products" element={<ProductsPage />} />
     </Routes>
   );
 }

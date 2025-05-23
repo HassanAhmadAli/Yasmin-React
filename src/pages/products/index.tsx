@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { AppSidebar } from "../../components/Sidebar";
 import { AppNavigationMenu } from "../../components/NavigationBar";
-import { Content } from "@/pages/Dashboard/components/content";
+import { Content } from "@/pages/products/components/content";
 
-export default function Dashboard() {
+export function ProductsPage() {
   return (
     <div className="grid max-w-[100vw] gap-4 p-4">
       <AppSidebar>
