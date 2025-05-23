@@ -5,6 +5,16 @@ export async function handleSearchRequest(
   searchType: string,
   searchTerm: string,
 ) {
-  const response = await axios.get(`/api/customer/page/${paginationNumber}`);
+  let response;
+
+  if (searchTerm) {
+    console.log(searchTerm);
+    response = await axios.post(`/api/customer/search/`, {
+      term: searchTerm,
+    });
+  } else {
+    response = await axios.get("/api/customer/");
+  }
+
   return response.data;
 }

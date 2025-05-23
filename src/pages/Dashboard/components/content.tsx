@@ -65,7 +65,6 @@ export function Content() {
         searchType,
         searchTerm,
       );
-
       setUsers(data);
     } catch (error: any) {
       console.error("Error fetching users:", error.message);
@@ -73,7 +72,7 @@ export function Content() {
     } finally {
       setIsLoading(false);
     }
-  }, [paginationNumber]);
+  }, [paginationNumber, searchTerm]);
 
   React.useEffect(() => {
     setPaginationNumber(1);
