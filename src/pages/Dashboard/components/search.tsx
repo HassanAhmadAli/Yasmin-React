@@ -35,7 +35,7 @@ export function SelectDemo({
     </Select>
   );
 }
-function SearchArea({ setSearchBy, searchTerm, setSearchTerm, handleSearch }) {
+function SearchArea({ setSearchBy, searchTerm, setSearchTerm }) {
   return (
     <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center">
       <div className="relative flex-1">
@@ -45,14 +45,12 @@ function SearchArea({ setSearchBy, searchTerm, setSearchTerm, handleSearch }) {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            handleSearch(e);
           }}
         />
         <Button
           variant="ghost"
           size="sm"
           className="absolute right-0 top-0 h-full px-3"
-          onClick={handleSearch}
         >
           <SearchIcon className="h-4 w-4" />
         </Button>

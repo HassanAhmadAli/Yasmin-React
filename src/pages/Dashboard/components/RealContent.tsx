@@ -13,11 +13,11 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const RealCellContent = ({
-  filteredUsers,
+  users: filteredUsers,
   isMobile,
 }: {
   isMobile: boolean;
-  filteredUsers: Array<any>;
+  users: Array<any>;
 }) => {
   const header = isMobile ? (
     <></>
