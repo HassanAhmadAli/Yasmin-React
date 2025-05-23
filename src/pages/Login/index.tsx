@@ -23,7 +23,7 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { useNavigate } from "react-router";
 import { handleSubmit } from "./helper/handleSubmit";
-export default function CardWithForm() {
+export function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();

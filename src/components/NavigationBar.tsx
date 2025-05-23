@@ -22,7 +22,7 @@ export function AppNavigationMenu() {
             }}
             className={navigationMenuTriggerStyle_}
           >
-            Home
+            Customers Profiles
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem className="cursor-pointer">
