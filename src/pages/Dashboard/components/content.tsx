@@ -57,28 +57,30 @@ export function Content() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [window.innerWidth]);
+  const handleSearch = React.useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await axiosInstance.get(
+        `/api/customer/page/${paginationNumber}`,
+      );
+      const data = response.data;
+      setUsers(data);
+    } catch (error: any) {
+      console.error("Error fetching users:", error.message);
+      setUsers([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [paginationNumber]);
+
   React.useEffect(() => {
     setPaginationNumber(1);
   }, [searchType, setSearchType]);
 
+  // Initial load
   React.useEffect(() => {
-    setIsLoading(true);
-    const fetchUsers = async () => {
-      try {
-        const response = await axiosInstance.get(
-          `/api/customer/page/${paginationNumber}`,
-        );
-        const data = response.data;
-        setUsers(data);
-      } catch (error: any) {
-        console.error("Error fetching users:", error.message);
-        setUsers([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchUsers();
-  }, [paginationNumber, searchType, searchTerm]);
+    handleSearch();
+  }, [paginationNumber]);
 
   return (
     <div className="w-full space-y-2">
@@ -86,6 +88,7 @@ export function Content() {
         setSearchBy={setSearchType}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        onSearch={handleSearch}
       />
       {isLoading ? (
         <SkeletonContent isMobile={isMobile} />
