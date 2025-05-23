@@ -8,10 +8,16 @@ export async function handleSearchRequest(
   let response;
 
   if (searchTerm) {
-    console.log(searchTerm);
-    response = await axios.post(`/api/customer/search/`, {
-      term: searchTerm,
-    });
+    if (searchType == "any" || !searchType)
+      response = await axios.post(`/api/customer/search/`, {
+        term: searchTerm,
+      });
+    else {
+      response = await axios.post(`/api/customer/search/`, {
+        term: searchTerm,
+        type: searchType,
+      });
+    }
   } else {
     response = await axios.get("/api/customer/");
   }

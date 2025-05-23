@@ -72,7 +72,7 @@ export function Content() {
     } finally {
       setIsLoading(false);
     }
-  }, [paginationNumber, searchTerm]);
+  }, [paginationNumber, searchTerm, searchType]);
 
   React.useEffect(() => {
     setPaginationNumber(1);
