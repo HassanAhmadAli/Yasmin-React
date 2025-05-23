@@ -5,6 +5,7 @@ import { Product } from "../models/product";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -17,6 +18,7 @@ import { Label } from "@/components/ui/label";
 
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 function RatingDialog() {
   const [rating, setRating] = React.useState(0);
@@ -52,7 +54,9 @@ function RatingDialog() {
                 <Star
                   key={star}
                   className={`h-6 w-6 cursor-pointer ${
-                    rating >= star ? "fill-orange-400 text-orange-400" : "fill-white-400 text-orange-400"
+                    rating >= star
+                      ? "fill-orange-400 text-orange-400"
+                      : "fill-white-400 text-orange-400"
                   }`}
                   onClick={() => setRating(star)}
                 />
@@ -61,7 +65,9 @@ function RatingDialog() {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Submit Rating</Button>
+          <DialogClose asChild>
+            <Button type="submit">Submit Rating</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
