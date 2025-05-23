@@ -13,35 +13,7 @@ import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
 import { handleSearchRequest } from "../helper/requests";
-interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-interface Geo {
-  lat: string;
-  lng: string;
-}
-
-interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-interface User {
-  _id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
-}
+import { User } from "../models/user";
 export function Content() {
   const [users, setUsers] = React.useState<User[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>("");
