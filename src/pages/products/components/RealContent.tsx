@@ -3,31 +3,71 @@ import React from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "../models/product";
 
-import { Star } from "lucide-react";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
+import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+function RatingDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Add Rating</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>we value your Opinion</DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input
+              id="name"
+              defaultValue="Pedro Duarte"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input
+              id="username"
+              defaultValue="@peduarte"
+              className="col-span-3"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
 const RealCellContent = ({
   products,
 }: {
   isMobile: boolean;
   products: Array<Product>;
 }) => {
-  
   return (
-    <div className="flex flex-wrap space-y-4">
+    <div className="flex h-min flex-wrap gap-4 space-y-4">
       {products.map((product) => (
         <>
-          <Card
-            className="w-80 p-4"
-          
-          >
+          <Card className="w-80 p-4">
             <CardHeader>
               <CardTitle className="text-lg">{product.title}</CardTitle>
             </CardHeader>
@@ -54,15 +94,16 @@ const RealCellContent = ({
                   ),
                 )}
               </div>
+
               <span className="text-sm text-blue-600">
                 {product.rating.count}
               </span>
             </div>
+            <RatingDialog />
             <div className="mb-3 text-2xl">
               ${product.price}
               <sup className="text-lg">99</sup>
             </div>
-          
           </Card>
         </>
       ))}
