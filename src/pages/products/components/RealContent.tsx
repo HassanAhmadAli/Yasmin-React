@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "sonner";
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "../models/product";
@@ -18,11 +19,20 @@ import { Label } from "@/components/ui/label";
 
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 
 function RatingDialog() {
   const [rating, setRating] = React.useState(0);
   const [comment, setComment] = React.useState("");
+
+  const handleSubmit = () => {
+    if (rating === 0) {
+      toast.error("Please select a rating");
+      return;
+    }
+    toast.success("Thank you for your rating!");
+    setRating(0);
+    setComment("");
+  };
 
   return (
     <Dialog>
@@ -66,7 +76,9 @@ function RatingDialog() {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="submit">Submit Rating</Button>
+            <Button type="submit" onClick={handleSubmit}>
+              Submit Rating
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

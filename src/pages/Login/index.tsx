@@ -30,7 +30,6 @@ export function Login() {
 
   return (
     <div className="mt-[100px] flex h-screen flex-col items-center md:justify-center">
-      <Toaster />
       <Card className="w-[400px] shadow-lg shadow-gray-400">
         <CardHeader>
           <CardTitle>login To Your Account</CardTitle>

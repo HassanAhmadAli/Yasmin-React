@@ -32,7 +32,6 @@ export function Signup() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center hue-rotate-180">
-      <Toaster />
       <Card className="w-[400px] shadow-lg shadow-gray-400">
         <CardHeader>
           <CardTitle>Create account</CardTitle>
