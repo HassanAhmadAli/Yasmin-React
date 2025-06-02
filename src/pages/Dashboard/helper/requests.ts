@@ -1,4 +1,4 @@
-import axios from "@/utils/http";
+import axios from "@/lib/axios";
 
 export async function handleSearchRequest(
   paginationNumber: number,

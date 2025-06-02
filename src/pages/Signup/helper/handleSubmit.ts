@@ -1,4 +1,4 @@
-import axiosInstance from "@/utils/http";
+import axiosInstance from "@/lib/axios";
 import { toast } from "sonner";
 import React from "react";
 export async function handleSubmit(
