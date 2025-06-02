@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "sonner";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { Product } from "../models/product";
+import { Product } from "../../../model/product";
 
 import {
   Dialog,

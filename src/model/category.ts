@@ -1,4 +1,4 @@
-export enum Category {
+export const enum Category {
   Electronics = "electronics",
   Jewelery = "jewelery",
   MenSClothing = "men's clothing",

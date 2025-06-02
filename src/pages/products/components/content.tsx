@@ -13,7 +13,7 @@ import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
 import { handleSearchRequest } from "../helper/requests";
-import { Product } from "../models/product";
+import { Product } from "../../../model/product";
 import { Tooltip, TooltipContent } from "@radix-ui/react-tooltip";
 export function Content() {
   const [products, setProducts] = React.useState<Product[]>([]);
