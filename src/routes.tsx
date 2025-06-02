@@ -10,11 +10,11 @@ import { ProductsPage } from "@/pages/products/index";
 export default function Router() {
   return (
     <Routes>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/about" element={<Doc />} />
-      <Route path="/products" element={<ProductsPage />} />
+      <Route index={true} element={<Dashboard />} />
+      <Route path="about" element={<Doc />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="login" element={<Login />} />
+      <Route path="products" element={<ProductsPage />} />
     </Routes>
   );
 }
