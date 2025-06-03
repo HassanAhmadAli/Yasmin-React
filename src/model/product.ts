@@ -1,4 +1,4 @@
-import { Rating } from "./Rating";
+import { Rating } from "./rating";
 import { Category } from "./category";
 export interface Product {
   title: string;
@@ -7,7 +7,6 @@ export interface Product {
   price: number;
   category: Category;
   image: string;
-  __v: number;
   createdAt: Date;
   updatedAt: Date;
   _id: string;
