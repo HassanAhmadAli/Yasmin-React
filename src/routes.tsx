@@ -8,6 +8,7 @@ import { Login } from "@/pages/login/index";
 import { Doc } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
 import { PostPage } from "./pages/post";
+import { Page404 } from "./pages/404";
 export default function Router() {
   return (
     <Routes>
@@ -17,6 +18,9 @@ export default function Router() {
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />
       <Route path="post" element={<PostPage />}></Route>
+      <Route path="*" element={<Page404 />}></Route>
+      <Route path="favorites" element={<Page404 />}></Route>
+      <Route path="profile" element={<Page404 />}></Route>
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/lib/axios";
+import { axiosInstance as axios } from "@/lib/axios";
 import { toast } from "sonner";
 
 export async function handleSubmit(
@@ -14,7 +14,7 @@ export async function handleSubmit(
     email: formData.get("email"),
     password: formData.get("password"),
   };
-  const p1 = axiosInstance.post("/api/login", userData);
+  const p1 = axios.post("/api/login", userData);
   toast.loading("logging in...");
   try {
     const response = await p1;
