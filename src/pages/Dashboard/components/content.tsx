@@ -9,11 +9,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
+
+
+import { User } from "@/model/user";
+import { handleSearchRequest } from "../helper/requests";
 import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
-import { handleSearchRequest } from "../helper/requests";
-import { User } from "../models/user";
+
 export function Content() {
   const [users, setUsers] = React.useState<User[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>("");
