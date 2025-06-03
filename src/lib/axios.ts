@@ -29,4 +29,4 @@ axiosInstance.interceptors.request.use(
   },
 );
 
-export default axiosInstance;
+export { axiosInstance };

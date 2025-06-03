@@ -7,6 +7,7 @@ import { Dashboard } from "@/pages/dashboard/index";
 import { Login } from "@/pages/login/index";
 import { Doc } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
+import { PostPage } from "./pages/post";
 export default function Router() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ export default function Router() {
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />
+      <Route path="post" element={<PostPage />}></Route>
     </Routes>
   );
 }

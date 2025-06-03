@@ -1,4 +1,4 @@
-import axios from "@/lib/axios";
+import {axiosInstance} from "@/lib/axios";
 
 export async function handleSearchRequest(
   paginationNumber: number,
@@ -9,17 +9,17 @@ export async function handleSearchRequest(
 
   if (searchTerm) {
     if (searchType == "any" || !searchType)
-      response = await axios.post(`/api/customer/search/`, {
+      response = await axiosInstance.post(`/api/customer/search/`, {
         term: searchTerm,
       });
     else {
-      response = await axios.post(`/api/customer/search/`, {
+      response = await axiosInstance.post(`/api/customer/search/`, {
         term: searchTerm,
         type: searchType,
       });
     }
   } else {
-    response = await axios.get("/api/customer/");
+    response = await axiosInstance.get("/api/customer/");
   }
 
   return response.data;
