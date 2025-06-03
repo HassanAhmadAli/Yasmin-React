@@ -9,15 +9,19 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-
-
 import { User } from "@/model/user";
 import { handleSearchRequest } from "../helper/requests";
 import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
-
 export function Content() {
+  return (
+    <>
+      <ContentWrapped />
+    </>
+  );
+}
+function ContentWrapped() {
   const [users, setUsers] = React.useState<User[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
