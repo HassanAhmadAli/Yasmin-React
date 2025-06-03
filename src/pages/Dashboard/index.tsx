@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { AppSidebar } from "../../components/Sidebar";
 import { AppNavigationMenu } from "../../components/NavigationBar";
-import { Content } from "@/pages/Dashboard/components/content";
+import { Content } from "@/pages/dashboard/components/content";
 
 export function Dashboard() {
   return (
