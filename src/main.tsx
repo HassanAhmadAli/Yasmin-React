@@ -1,6 +1,6 @@
 // src/index
 import { scan } from "react-scan";
-import React, { StrictMode } from "react";
+import  { StrictMode } from "react";
 // using react-scan to highlite the parts of the UI that need optimization
 scan({
   enabled: true,

@@ -1,4 +1,3 @@
-import React from "react";
 import { toast } from "sonner";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "../../../model/product";
@@ -27,6 +26,7 @@ import { Label } from "@/components/ui/label";
 
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 function ProductDrawer({ product }: { product: Product }) {
   return (
@@ -84,8 +84,8 @@ function ProductDrawer({ product }: { product: Product }) {
 }
 
 function RatingDialog() {
-  const [rating, setRating] = React.useState(0);
-  const [comment, setComment] = React.useState("");
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
   const handleSubmit = () => {
     if (rating === 0) {
@@ -155,9 +155,7 @@ const RealCellContent = ({
   isMobile: boolean;
   products: Array<Product>;
 }) => {
-  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(
-    null,
-  );
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
     <div className="flex h-min flex-wrap gap-4 space-y-4">

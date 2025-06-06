@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useCallback, useEffect, useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -22,13 +22,13 @@ export function Content() {
   );
 }
 function ContentWrapped() {
-  const [users, setUsers] = React.useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  const [users, setUsers] = useState<User[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [paginationNumber, setPaginationNumber] = useState(1);
-  const [searchType, setSearchType] = React.useState("any");
-  const [isLoading, setIsLoading] = React.useState(false);
-  React.useEffect(() => {
+  const [searchType, setSearchType] = useState("any");
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -36,7 +36,7 @@ function ContentWrapped() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [window.innerWidth]);
-  const handleSearch = React.useCallback(async () => {
+  const handleSearch = useCallback(async () => {
     setIsLoading(true);
     try {
       const data = await handleSearchRequest(
@@ -53,12 +53,12 @@ function ContentWrapped() {
     }
   }, [paginationNumber, searchTerm, searchType]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setPaginationNumber(1);
   }, [searchType, setSearchType]);
 
   // Initial load
-  React.useEffect(() => {
+  useEffect(() => {
     handleSearch();
   }, [paginationNumber]);
 

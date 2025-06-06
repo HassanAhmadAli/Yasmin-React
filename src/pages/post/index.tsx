@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { fetchPosts } from "./helper/fetchData";
 import { Post } from "@/model/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -16,7 +16,7 @@ const extractWords = (text: string) => {
 export function PostPage() {
   const [users, setUsers] = useState<Post[]>([]);
   const auth = useContext(AuthContext);
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchAndSetUsers = async () => {
       const data: Post[] = await fetchPosts();
       setUsers(data);

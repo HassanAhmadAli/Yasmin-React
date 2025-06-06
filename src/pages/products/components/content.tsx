@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -14,15 +14,15 @@ import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
 import { handleSearchRequest } from "../helper/requests";
 import { Product } from "../../../model/product";
-import { Tooltip, TooltipContent } from "@radix-ui/react-tooltip";
+
 export function Content() {
-  const [products, setProducts] = React.useState<Product[]>([]);
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [paginationNumber, setPaginationNumber] = useState(1);
-  const [searchType, setSearchType] = React.useState("any");
-  const [isLoading, setIsLoading] = React.useState(false);
-  React.useEffect(() => {
+  const [searchType, setSearchType] = useState("any");
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -30,7 +30,7 @@ export function Content() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [window.innerWidth]);
-  const handleSearch = React.useCallback(async () => {
+  const handleSearch = useCallback(async () => {
     setIsLoading(true);
     try {
       const data = await handleSearchRequest(
@@ -47,12 +47,12 @@ export function Content() {
     }
   }, [paginationNumber, searchTerm, searchType]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setPaginationNumber(1);
   }, [searchType, setSearchType]);
 
   // Initial load
-  React.useEffect(() => {
+  useEffect(() => {
     handleSearch();
   }, [paginationNumber]);
 
@@ -65,9 +65,9 @@ export function Content() {
         onSearch={handleSearch}
       />
       {isLoading ? (
-        <SkeletonContent />
+        <SkeletonContent isMobile={isMobile} />
       ) : (
-        <RealCellContent products={products} />
+        <RealCellContent isMobile={isMobile} products={products} />
       )}
 
       <Pagination>

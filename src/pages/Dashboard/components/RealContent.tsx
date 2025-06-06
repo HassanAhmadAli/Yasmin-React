@@ -1,4 +1,3 @@
-import React from "react";
 import { UserDropdownMenu } from "./dropDownMenu";
 
 import {

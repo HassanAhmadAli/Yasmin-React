@@ -1,6 +1,3 @@
-import React from "react";
-
-import { useNavigate } from "react-router";
 import { AppSidebar } from "@/components/Sidebar";
 import { AppNavigationMenu } from "@/components/NavigationBar";
 import { Button } from "@/components/ui/button";

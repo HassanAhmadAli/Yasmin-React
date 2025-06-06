@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useState } from "react";
 
 import { Eye, EyeOff } from "lucide-react";
@@ -20,7 +18,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
 import { useNavigate } from "react-router";
 import { handleSubmit } from "./helper/handleSubmit";
 export function Login() {

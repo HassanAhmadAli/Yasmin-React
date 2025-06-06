@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 import { Routes, Route } from "react-router";
 import { Signup } from "@/pages/signup/index";

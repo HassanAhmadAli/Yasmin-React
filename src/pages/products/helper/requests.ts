@@ -1,6 +1,7 @@
-import {axiosInstance} from "@/lib/axios";
+import { axiosInstance } from "@/lib/axios";
 
 export async function handleSearchRequest(
+  //todo: add pagination
   paginationNumber: number,
   searchType: string,
   searchTerm: string,
@@ -11,11 +12,13 @@ export async function handleSearchRequest(
     if (searchType == "any" || !searchType)
       response = await axiosInstance.post("/api/products/search/", {
         term: searchTerm,
+        paginationNumber,
       });
     else {
       response = await axiosInstance.post("/api/products/search/", {
         term: searchTerm,
         type: searchType,
+        paginationNumber,
       });
     }
   } else {

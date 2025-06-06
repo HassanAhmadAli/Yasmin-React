@@ -1,10 +1,9 @@
-import React from "react";
 import {
   SidebarHeader,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar,  Inbox, Search, Settings } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,

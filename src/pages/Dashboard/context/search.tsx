@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useState } from "react";
-import React from "react";
 interface SearchContextContent {
   searchTerm: string;
   setSearchTerm: (item: string) => void;

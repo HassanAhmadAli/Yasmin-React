@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router";
-import * as React from "react";
-
 import {
   NavigationMenu,
   NavigationMenuItem,
