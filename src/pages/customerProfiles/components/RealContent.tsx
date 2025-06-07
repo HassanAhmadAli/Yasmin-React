@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGlobalState } from "@/globalState";
 import { useDashboardState } from "../state";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dashboard } from "..";
+
 import { User } from "@/model/user";
 import { ReactNode } from "react";
 
