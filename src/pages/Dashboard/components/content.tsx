@@ -1,4 +1,4 @@
-import  { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -9,11 +9,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { User } from "@/model/user";
-import { handleSearchRequest } from "../helper/requests";
 import { SearchArea } from "./search";
 import { SkeletonContent } from "./skeleton";
 import { RealCellContent } from "./RealContent";
+import { handleSearch } from "../helper/handleSearch";
+import { useDashboardState } from "../state";
 export function Content() {
   return (
     <>
@@ -22,40 +22,17 @@ export function Content() {
   );
 }
 function ContentWrapped() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [paginationNumber, setPaginationNumber] = useState(1);
-  const [searchType, setSearchType] = useState("any");
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [window.innerWidth]);
-  const handleSearch = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const data = await handleSearchRequest(
-        paginationNumber,
-        searchType,
-        searchTerm,
-      );
-      setUsers(data);
-    } catch (error: any) {
-      console.error("Error fetching users:", error.message);
-      setUsers([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [paginationNumber, searchTerm, searchType]);
+  const setPaginationNumber = useDashboardState(
+    (state) => state.setPaginationNumber,
+  );
+  const searchType = useDashboardState((state) => state.searchType);
+  const paginationNumber = useDashboardState((state) => state.paginationNumber);
+  const setSearchType = useDashboardState((state) => state.setSearchType);
+  const isLoading = useDashboardState((state) => state.isLoading);
 
   useEffect(() => {
     setPaginationNumber(1);
-  }, [searchType, setSearchType]);
+  }, [searchType]);
 
   // Initial load
   useEffect(() => {
@@ -64,17 +41,8 @@ function ContentWrapped() {
 
   return (
     <div className="w-full space-y-2">
-      <SearchArea
-        setSearchBy={setSearchType}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        onSearch={handleSearch}
-      />
-      {isLoading ? (
-        <SkeletonContent isMobile={isMobile} />
-      ) : (
-        <RealCellContent isMobile={isMobile} users={users} />
-      )}
+      <SearchArea onSearch={handleSearch} />
+      {isLoading ? <SkeletonContent /> : <RealCellContent />}
 
       <Pagination>
         <PaginationContent>

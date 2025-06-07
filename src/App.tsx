@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import AppRoutes from "./routes";
 import { useEffect } from "react";
-import { useGlobalState } from "./pages/globalState";
+import { useGlobalState } from "./globalState";
 export default function App() {
   useEffect(() => {
     useGlobalState.getState().setIsMobile(window.innerWidth < 768);

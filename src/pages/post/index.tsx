@@ -1,10 +1,10 @@
-import  { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchPosts } from "./helper/fetchData";
 import { Post } from "@/model/post";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { AuthContext } from "@/authContext";
+import { usePostState } from "./state";
 
 const extractWords = (text: string) => {
   const words = text.split(/\s+/);
@@ -14,24 +14,24 @@ const extractWords = (text: string) => {
   return words.slice(0, 25).join(" ") + " ...";
 };
 export function PostPage() {
-  const [users, setUsers] = useState<Post[]>([]);
-  const auth = useContext(AuthContext);
+  const setPosts = usePostState((state) => state.setPosts);
+  const posts = usePostState((state) => state.posts);
+
   useEffect(() => {
     const fetchAndSetUsers = async () => {
       const data: Post[] = await fetchPosts();
-      setUsers(data);
+      setPosts(data);
     };
     fetchAndSetUsers();
   }, []);
-  const elements = users.map((user) => (
-    <Card key={user._id}>
-      <CardTitle>{user.title}</CardTitle>
+  const elements = posts.map((post) => (
+    <Card key={post._id}>
+      <CardTitle>{post.title}</CardTitle>
       <CardContent>
-        <h1>{extractWords(user.body)}</h1>
-        <h1>written by: {user.customer.name}</h1>
-        {auth.jwt}
+        <h1>{extractWords(post.body)}</h1>
+        <h1>written by: {post.customer.name}</h1>
       </CardContent>
-      <Button onClick={()=>{auth.setJwt("****")}}></Button>
+      <Button onClick={() => {}}></Button>
     </Card>
   ));
   return <>{elements}</>;

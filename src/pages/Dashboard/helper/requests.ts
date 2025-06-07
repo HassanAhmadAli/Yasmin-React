@@ -1,11 +1,9 @@
 import { axiosInstance } from "@/lib/axios";
+import { useDashboardState } from "../state";
 
-export async function handleSearchRequest(
-  //todo: add pagination
-  paginationNumber: number,
-  searchType: string,
-  searchTerm: string,
-) {
+export async function handleSearchRequest() {
+  const { paginationNumber, searchType, searchTerm } =
+    useDashboardState.getState();
   let response;
 
   if (searchTerm) {

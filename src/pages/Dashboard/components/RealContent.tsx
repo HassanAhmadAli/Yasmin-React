@@ -10,14 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useGlobalState } from "@/globalState";
+import { useDashboardState } from "../state";
 
-const RealCellContent = ({
-  users: filteredUsers,
-  isMobile,
-}: {
-  isMobile: boolean;
-  users: Array<any>;
-}) => {
+const RealCellContent = () => {
+  const isMobile = useGlobalState((state) => state.isMobile);
+  const users = useDashboardState((state) => state.users);
   const header = isMobile ? (
     <></>
   ) : (
@@ -37,7 +35,7 @@ const RealCellContent = ({
     return (
       <div className="space-y-4">
         {header}
-        {filteredUsers.map((user) => (
+        {users.map((user) => (
           <Card key={user._id}>
             <CardHeader>
               <CardTitle className="text-lg">{user.name}</CardTitle>
@@ -64,7 +62,7 @@ const RealCellContent = ({
       <Table>
         {header}
         <TableBody>
-          {filteredUsers.map((user) => (
+          {users.map((user) => (
             <TableRow key={user._id}>
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell className="">{user.email}</TableCell>

@@ -10,7 +10,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Skeleton } from "../../../components/ui/skeleton";
-import { useGlobalState } from "@/pages/globalState";
+import { useGlobalState } from "@/globalState";
 export function SkeletonContent() {
   const skeletonArray = Array(7).fill(null);
   const isMobile = useGlobalState((state) => state.isMobile);

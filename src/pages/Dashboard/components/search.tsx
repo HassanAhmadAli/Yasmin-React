@@ -11,14 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useDashboardState } from "../state";
 
-export function SelectSearchType({
-  setSearchBy,
-}: {
-  setSearchBy: (value: string) => void;
-}) {
+export function SelectSearchType() {
+  const setSearchType = useDashboardState((state) => state.setSearchType);
   return (
-    <Select onValueChange={setSearchBy} defaultValue="any">
+    <Select onValueChange={setSearchType} defaultValue="any">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Search By" />
       </SelectTrigger>
@@ -35,24 +33,14 @@ export function SelectSearchType({
   );
 }
 
-function SearchArea({
-  setSearchBy,
-  searchTerm,
-  setSearchTerm,
-  onSearch,
-}: {
-  setSearchBy: (value: string) => void;
-  searchTerm: string;
-  setSearchTerm: (value: string) => void;
-  onSearch: () => void;
-}) {
+export function SearchArea({ onSearch }: { onSearch: () => void }) {
+  const setSearchTerm = useDashboardState((state) => state.setSearchTerm);
   return (
     <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center">
       <div className="relative flex-1">
         <Input
           className="w-full pr-10"
           placeholder="Search users..."
-          value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
@@ -71,9 +59,7 @@ function SearchArea({
           <SearchIcon className="h-4 w-4" />
         </Button>
       </div>
-      <SelectSearchType setSearchBy={setSearchBy} />
+      <SelectSearchType />
     </div>
   );
 }
-
-export { SearchArea };

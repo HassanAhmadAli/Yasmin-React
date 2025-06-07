@@ -10,9 +10,10 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Skeleton } from "../../../components/ui/skeleton";
-const SkeletonContent = ({ isMobile }: { isMobile: boolean }) => {
+import { useGlobalState } from "@/globalState";
+const SkeletonContent = () => {
   const skeletonArray = Array(7).fill(null);
-
+  const isMobile = useGlobalState((state) => state.isMobile);
   const MobileCellContent = function () {
     return (
       <div className="space-y-4">
@@ -74,6 +75,7 @@ const SkeletonContent = ({ isMobile }: { isMobile: boolean }) => {
       </Table>
     </div>
   );
+
   if (isMobile) return <MobileCellContent />;
   else return <LargeCellContent />;
 };
