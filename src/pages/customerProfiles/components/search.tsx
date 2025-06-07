@@ -12,9 +12,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useDashboardState } from "../state";
+import { useEffect } from "react";
 
 export function SelectSearchType() {
+  const searchType = useDashboardState((state) => state.searchType);
   const setSearchType = useDashboardState((state) => state.setSearchType);
+  const resetPaginationNumber = useDashboardState(
+    (state) => state.resetPaginationNumber,
+  );
+  useEffect(resetPaginationNumber, [searchType]);
   return (
     <Select onValueChange={setSearchType} defaultValue="any">
       <SelectTrigger className="w-[180px]">

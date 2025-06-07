@@ -19,14 +19,20 @@ export function Content() {
   const setPaginationNumber = useDashboardState(
     (state) => state.setPaginationNumber,
   );
-  const searchType = useDashboardState((state) => state.searchType);
+
   const paginationNumber = useDashboardState((state) => state.paginationNumber);
   const isLoading = useDashboardState((state) => state.isLoading);
+  const setIsLoading = useDashboardState((state) => state.setIsLoading);
   const users = useDashboardState((state) => state.users);
   useEffect(() => {
-    setPaginationNumber(1);
-  }, [searchType]);
-
+    const handleSearchChange = async () => {
+      if (isLoading) return;
+      setIsLoading(true);
+      await handleSearch();
+      setIsLoading(false);
+    };
+    handleSearchChange();
+  }, [paginationNumber]);
   // Initial load
   useEffect(() => {
     handleSearch();
@@ -44,7 +50,7 @@ export function Content() {
       </ItemsWrapper>
       <Pagination>
         <PaginationContent>
-          {paginationNumber !== 1 ? (
+          {paginationNumber !== 1 && (
             <>
               <PaginationItem>
                 <button
@@ -60,8 +66,6 @@ export function Content() {
                 <PaginationEllipsis />
               </PaginationItem>
             </>
-          ) : (
-            <></>
           )}
 
           <PaginationItem
