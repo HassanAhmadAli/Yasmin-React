@@ -1,12 +1,13 @@
-import {axiosInstance} from "@/lib/axios";
+import { axiosInstance } from "@/lib/axios";
 import { toast } from "sonner";
 import React from "react";
+import { useSignupStore } from "../state";
 export async function handleSubmit(
   formEvent: React.FormEvent<HTMLFormElement>,
-  setIsSubmitting: (val: boolean) => void,
   navigate: (path: string) => void,
 ) {
   formEvent.preventDefault();
+  const setIsSubmitting = useSignupStore.getState().setIsSubmitting;
   setIsSubmitting(true);
   const formData = new FormData(formEvent.currentTarget);
   const userData = {
