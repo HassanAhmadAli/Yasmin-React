@@ -9,27 +9,20 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { SearchArea } from "./search";
-import { SkeletonContent } from "./skeleton";
-import { RealCellContent } from "./RealContent";
 import { handleSearch } from "../helper/handleSearch";
+import { SearchArea } from "./search";
+import { ItemsWrapper } from "./itemsWrapper";
+import { Item } from "./Item";
 import { useDashboardState } from "../state";
+
 export function Content() {
-  return (
-    <>
-      <ContentWrapped />
-    </>
-  );
-}
-function ContentWrapped() {
   const setPaginationNumber = useDashboardState(
     (state) => state.setPaginationNumber,
   );
   const searchType = useDashboardState((state) => state.searchType);
   const paginationNumber = useDashboardState((state) => state.paginationNumber);
-  const setSearchType = useDashboardState((state) => state.setSearchType);
   const isLoading = useDashboardState((state) => state.isLoading);
-
+  const users = useDashboardState((state) => state.users);
   useEffect(() => {
     setPaginationNumber(1);
   }, [searchType]);
@@ -42,8 +35,13 @@ function ContentWrapped() {
   return (
     <div className="w-full space-y-2">
       <SearchArea onSearch={handleSearch} />
-      {isLoading ? <SkeletonContent /> : <RealCellContent />}
-
+      <ItemsWrapper>
+        {users.length === 0
+          ? Array.from({ length: 7 }, (_, i) => i).map((ind) => (
+              <Item user={null} key={ind} />
+            ))
+          : users.map((user) => <Item user={user} key={user._id}></Item>)}
+      </ItemsWrapper>
       <Pagination>
         <PaginationContent>
           {paginationNumber !== 1 ? (
