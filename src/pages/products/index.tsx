@@ -1,7 +1,10 @@
 import { AppSidebar } from "../../components/Sidebar";
 import { AppNavigationMenu } from "../../components/NavigationBar";
-import { Content } from "@/pages/products/components/content";
 
+import { SearchArea } from "./components/search";
+import { Content } from "./components/content";
+import { PaginationItems } from "./components/paginationItems";
+import { handleSearch } from "./helper/handleSearch";
 export function ProductsPage() {
   return (
     <div className="grid max-w-[100vw] gap-4 p-4">
@@ -11,7 +14,11 @@ export function ProductsPage() {
             <AppNavigationMenu />
           </nav>
           <main className="flex-1 p-4">
-            <Content />
+            <div className="w-full space-y-2">
+              <SearchArea onSearch={handleSearch} />
+              <Content />
+              <PaginationItems />
+            </div>
           </main>
         </div>
       </AppSidebar>

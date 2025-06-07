@@ -1,12 +1,11 @@
 import { axiosInstance } from "@/lib/axios";
+import { useProductPageState } from "../state";
 
-export async function handleSearchRequest(
+export async function handleSearchRequest() {
   //todo: add pagination
-  paginationNumber: number,
-  searchType: string,
-  searchTerm: string,
-) {
   let response;
+  const { paginationNumber, searchType, searchTerm } =
+    useProductPageState.getState();
 
   if (searchTerm) {
     if (searchType == "any" || !searchType)
