@@ -9,7 +9,6 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("jwt");
     const publicPaths = ["/api/signin", "/api/login"];
-
     // Skip adding auth header for public paths
     if (publicPaths.includes(config.url || "")) {
       return config;
