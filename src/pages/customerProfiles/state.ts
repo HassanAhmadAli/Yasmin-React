@@ -1,5 +1,6 @@
 import { User } from "@/model/user";
 import { create } from "zustand";
+
 export interface IDashboardState {
   searchTerm: string;
   paginationNumber: number;
