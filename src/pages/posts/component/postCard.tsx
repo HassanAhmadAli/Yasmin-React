@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Post } from "@/model/post";
-import { useNavigate } from "react-router";
+
 const extractWords = (text: string) => {
   const words = text.split(/\s+/);
   if (words.length <= 30) {
@@ -9,19 +9,21 @@ const extractWords = (text: string) => {
   }
   return words.slice(0, 25).join(" ") + " ...";
 };
-export function PostCard(post: Post) {
-  const navigate = useNavigate();
-  // Display author name on each post card.
+
+export function PostCard(
+  { _id, title, body, customer }: Post,
+  navigate: unknown,
+) {
   return (
-    <Card key={post._id}>
-      <CardTitle>{post.title}</CardTitle>
+    <Card key={_id}>
+      <CardTitle>{title}</CardTitle>
       <CardContent>
-        <h2>{extractWords(post.body)}</h2>
-        <h2>written by: {post.customer.name}</h2>
+        <h2>{extractWords(body)}</h2>
+        <h2>written by: {customer.name}</h2>
       </CardContent>
       <Button
-        onClick={async () => {
-          await navigate(`/post/${post._id}`);
+        onClick={() => {
+          navigate(`/post/${_id}`);
         }}
       >
         x

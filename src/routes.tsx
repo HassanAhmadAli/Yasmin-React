@@ -8,6 +8,7 @@ import { Doc } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
 import { PostsPage } from "./pages/posts";
 import { Page404 } from "./pages/404";
+import { SinglePostPage } from "./pages/post";
 
 export default function Router() {
   return (
@@ -18,7 +19,7 @@ export default function Router() {
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />
       <Route path="posts" element={<PostsPage />}></Route>
-      <Route path="post/:id" element={<PostsPage />}></Route>
+      <Route path="post/:id" element={<SinglePostPage />}></Route>
       <Route path="*" element={<Page404 />}></Route>
       <Route path="favorites" element={<Page404 />}></Route>
       <Route path="profile" element={<Page404 />}></Route>
