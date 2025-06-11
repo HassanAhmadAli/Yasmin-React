@@ -1,6 +1,6 @@
 import { Address } from "./address";
 import { Company } from "./company";
-export interface User {
+export interface Customer {
   _id: number;
   name: string;
   username: string;
