@@ -1,38 +1,32 @@
-import { useEffect } from "react";
-import { fetchPosts } from "./helper/fetchData";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
 import { Post } from "@/model/post";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { getPostById } from "../posts/helper/fetchData";
 
-import { Button } from "@/components/ui/button";
-import { usePostState } from "./state";
-
-const extractWords = (text: string) => {
-  const words = text.split(/\s+/);
-  if (words.length <= 30) {
-    return text;
-  }
-  return words.slice(0, 25).join(" ") + " ...";
-};
-export function PostPage() {
-  const setPosts = usePostState((state) => state.setPosts);
-  const posts = usePostState((state) => state.posts);
+export function SinglePostPage() {
+  const { id } = useParams<{ id: string }>();
+  const [post, setPost] = useState<Post | null>(null);
 
   useEffect(() => {
-    const fetchAndSetUsers = async () => {
-      const data: Post[] = await fetchPosts();
-      setPosts(data);
-    };
-    fetchAndSetUsers();
-  }, []);
-  const elements = posts.map((post) => (
-    <Card key={post._id}>
-      <CardTitle>{post.title}</CardTitle>
-      <CardContent>
-        <h1>{extractWords(post.body)}</h1>
-        <h1>written by: {post.customer.name}</h1>
-      </CardContent>
-      <Button onClick={() => {}}></Button>
-    </Card>
-  ));
-  return <>{elements}</>;
+    async function fetchPost() {
+      try {
+        const data = await getPostById(id as string);
+        setPost(data);
+      } catch (error) {
+        console.error("Error fetching post:", error);
+      }
+    }
+    fetchPost();
+  }, [id]);
+
+  if (!post) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  );
 }

@@ -6,7 +6,7 @@ import { Dashboard } from "@/pages/customerProfiles/index";
 import { Login } from "@/pages/login/index";
 import { Doc } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
-import { PostPage } from "./pages/post";
+import { PostsPage } from "./pages/posts";
 import { Page404 } from "./pages/404";
 
 export default function Router() {
@@ -17,7 +17,8 @@ export default function Router() {
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />
-      <Route path="post" element={<PostPage />}></Route>
+      <Route path="posts" element={<PostsPage />}></Route>
+      <Route path="post/:id" element={<PostsPage />}></Route>
       <Route path="*" element={<Page404 />}></Route>
       <Route path="favorites" element={<Page404 />}></Route>
       <Route path="profile" element={<Page404 />}></Route>
