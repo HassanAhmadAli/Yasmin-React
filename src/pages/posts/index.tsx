@@ -17,5 +17,9 @@ export function PostsPage() {
     };
     fetchAndSetUsers();
   }, []);
-  return <>{posts.map((post) => PostCard(post, navigate))}</>;
+  return (
+    <div className="flex flex-wrap gap-4">
+      {posts.map((post) => PostCard(post, navigate))}
+    </div>
+  );
 }
