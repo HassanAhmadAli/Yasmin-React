@@ -87,6 +87,7 @@ export function SinglePostPage() {
               <div className="text-gray-600">
                 <p className="font-medium">Author: {post.customer.name}</p>
                 <p>{post.customer.email}</p>
+                <p>{post.customer.company.name}</p>
               </div>
             </div>
             <article className="whitespace-pre-wrap leading-relaxed">

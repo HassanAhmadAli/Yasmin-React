@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 import { Post } from "@/model/post";
 import { NavigateFunction } from "react-router";
-import {} from "react-icons";
 import { ArrowRight, Star } from "lucide-react";
 const extractWords = (text: string) => {
   const words = text.split(/\s+/);
