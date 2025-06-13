@@ -47,7 +47,7 @@ export const useGlobalState = create<IGlobalState>((set) => ({
     set(() => ({ user }))
   },
   isMobile: false,
-  setIsMobile: (val: boolean) => set(() => ({ isMobile: val })),
+  setIsMobile: (isMobile: boolean) => set(() => ({ isMobile })),
   jwt: getJwt(),
   setJwt: (jwt) => {
     localStorage.setItem("jwt", jwt);
