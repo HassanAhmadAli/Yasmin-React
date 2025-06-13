@@ -1,9 +1,19 @@
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getPostById } from "../posts/helper/fetchData";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { FaUser, FaClock } from "react-icons/fa";
 import { usePostPageState } from "./state";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { saveComment } from "./helper/saveComment";
 export function SinglePostPage() {
   const { id } = useParams<{ id: string }>();
 
@@ -11,9 +21,13 @@ export function SinglePostPage() {
   const isLoading = usePostPageState((state) => state.isLoading);
   const error = usePostPageState((state) => state.error);
   const setPost = usePostPageState((state) => state.setPost);
+  const comments = usePostPageState((state) => state.comments);
   const setIsLoading = usePostPageState((state) => state.setIsLoading);
   const setError = usePostPageState((state) => state.setError);
-
+  const setCurrentComment = usePostPageState(
+    (state) => state.setCurrentComment,
+  );
+  const newCommentTextAreaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -94,6 +108,33 @@ export function SinglePostPage() {
               {post.body}
             </article>
           </div>
+        </CardContent>
+        <CardFooter className="gap-4">
+          <Textarea
+            ref={newCommentTextAreaRef}
+            onChange={(e) => {
+              setCurrentComment(e.target.value);
+            }}
+          />
+          <Button
+            variant="default"
+            onClick={() => {
+              saveComment();
+              newCommentTextAreaRef.current!.value = "";
+            }}
+          >
+            Comment
+          </Button>
+        </CardFooter>
+        <CardContent className="flex grid gap-4">
+          {comments.map((comment) => (
+            <Card key={comment._id}>
+              <CardHeader>{comment.text}</CardHeader>
+              <span className="font-medium">
+                By <span className="text-primary/80">{comment.authorName}</span>
+              </span>
+            </Card>
+          ))}
         </CardContent>
       </Card>
     </div>
