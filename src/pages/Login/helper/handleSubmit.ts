@@ -26,8 +26,7 @@ export async function handleSubmit(
       throw new Error("login failed. Please try again.");
     }
     toast.success("logged in successfully");
-    localStorage.setItem("token", response.data.token);
-    localStorage.setItem("user", response.data.user);
+    useGlobalState.getState().setJwt(response.data.token)
     useGlobalState.getState().setUser(response.data.user);
     navigate("/");
   } catch (err: any) {

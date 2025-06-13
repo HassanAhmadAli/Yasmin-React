@@ -18,7 +18,7 @@ export default function App() {
     const socket = io("ws://localhost:3009", {
       reconnectionDelayMax: 10000,
       auth: {
-        token: localStorage.getItem("jwt"),
+        token: useGlobalState.getState().jwt,
       },
       query: {
         "my-key": "my-value",
@@ -28,7 +28,7 @@ export default function App() {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [useGlobalState.getState().jwt]);
   return (
     <>
       <AppRoutes />

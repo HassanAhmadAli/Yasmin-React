@@ -3,7 +3,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Calendar,  Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Inbox, Search, Settings } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,6 +26,7 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link, useNavigate } from "react-router";
+import { useGlobalState } from "@/globalState";
 // Menu items.
 const items = [
   {
@@ -95,7 +96,7 @@ export function AppSidebar({ children }: { children: React.ReactNode }) {
                     className="cursor-pointer"
                     onClick={() => {
                       navigation("/login");
-                      localStorage.removeItem("token");
+                      useGlobalState.getState().logout();
                     }}
                   >
                     <span>Log out</span>
