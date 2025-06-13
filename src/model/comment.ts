@@ -1,9 +1,3 @@
-/*
-user name 
-email
-comment body
-on submission
-*/
 export interface Comment {
     text: string;
     authorName: string;

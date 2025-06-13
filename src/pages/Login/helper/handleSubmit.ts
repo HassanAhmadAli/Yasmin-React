@@ -1,6 +1,7 @@
 import { axiosInstance as axios } from "@/lib/axios";
 import { toast } from "sonner";
 import { useLoginStore as useLoginStore } from "../state";
+import { useGlobalState } from "@/globalState";
 
 export async function handleSubmit(
   formEvent: React.FormEvent<HTMLFormElement>,
@@ -11,8 +12,9 @@ export async function handleSubmit(
   setIsSubmitting(true);
 
   const formData = new FormData(formEvent.currentTarget);
+  const email: string = formData.get("email")! as string;
   const userData = {
-    email: formData.get("email"),
+    email,
     password: formData.get("password"),
   };
   const p1 = axios.post("/api/login", userData);
@@ -25,7 +27,8 @@ export async function handleSubmit(
     }
     toast.success("logged in successfully");
     localStorage.setItem("token", response.data.token);
-
+    localStorage.setItem("user", response.data.user);
+    useGlobalState.getState().setUser(response.data.user);
     navigate("/");
   } catch (err: any) {
     const errorMessage =
