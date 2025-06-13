@@ -1,29 +1,20 @@
-import { useEffect } from "react";
-import { fetchPosts } from "./helper/fetchData";
-import { Post } from "@/model/post";
+import { AppSidebar } from "../../components/Sidebar";
+import { AppNavigationMenu } from "../../components/NavigationBar";
+import { Content } from "./content";
 
-import { usePostState } from "./state";
-import { PostCard } from "./component/postCard";
-import { useNavigate } from "react-router";
-// todo: implement favorite
-const onFavorite = () => {
-  isFav = false;
-};
-let isFav = true;
 export function PostsPage() {
-  const setPosts = usePostState((state) => state.setPosts);
-  const posts = usePostState((state) => state.posts);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fetchAndSetUsers = async () => {
-      const data: Post[] = await fetchPosts();
-      setPosts(data);
-    };
-    fetchAndSetUsers();
-  }, []);
   return (
-    <div className="flex flex-wrap gap-4">
-      {posts.map((post) => PostCard(post, navigate, onFavorite, isFav))}
+    <div className="grid max-w-[100vw] gap-4 p-4">
+      <AppSidebar>
+        <div className="flex h-full w-full flex-col">
+          <nav>
+            <AppNavigationMenu />
+          </nav>
+          <main className="flex-1 p-4">
+            <Content />
+          </main>
+        </div>
+      </AppSidebar>
     </div>
   );
 }

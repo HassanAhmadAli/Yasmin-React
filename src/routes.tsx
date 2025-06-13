@@ -2,12 +2,11 @@ import "./index.css";
 import { Routes, Route } from "react-router";
 import { Signup } from "@/pages/signup/index";
 import { Dashboard } from "@/pages/customerProfiles/index";
-
 import { Login } from "@/pages/login/index";
 import { Doc } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
-import { PostsPage } from "./pages/posts";
 import { Page404 } from "./pages/404";
+import { PostsPage } from "./pages/posts";
 import { SinglePostPage } from "./pages/post";
 
 export default function Router() {
