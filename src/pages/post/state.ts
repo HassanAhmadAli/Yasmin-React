@@ -26,5 +26,5 @@ export const usePostPageState = create<PostPageState>((set) => ({
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
   setError: (error: string | null) => set({ error }),
   addComment: (comment: Comment) => set(state => ({ comments: [...state.comments, comment] })),
-  resetState: () => set(state => ({ comments: [], currentComment: "" }))
+  resetState: () => set(() => ({ comments: [], currentComment: "" }))
 }));

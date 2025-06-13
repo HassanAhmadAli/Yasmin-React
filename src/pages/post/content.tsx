@@ -11,7 +11,6 @@ import {
 import { FaUser, FaClock } from "react-icons/fa";
 import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
 export function Content() {
