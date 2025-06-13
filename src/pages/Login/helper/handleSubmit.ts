@@ -26,8 +26,8 @@ export async function handleSubmit(
       throw new Error("login failed. Please try again.");
     }
     toast.success("logged in successfully");
-    useGlobalState.getState().setJwt(response.data.token)
     useGlobalState.getState().setUser(response.data.user);
+    useGlobalState.getState().setJwt(response.data.token)
     navigate("/");
   } catch (err: any) {
     const errorMessage =

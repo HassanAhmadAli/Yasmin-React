@@ -15,6 +15,7 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   useEffect(() => {
+    if (useGlobalState.getState().jwt === null) return;
     const socket = io("ws://localhost:3009", {
       reconnectionDelayMax: 10000,
       auth: {
