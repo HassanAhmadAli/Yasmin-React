@@ -18,6 +18,7 @@ export default function Router() {
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />
       <Route path="posts" element={<PostsPage />}></Route>
+      <Route index element={<PostsPage />}></Route>
       <Route path="post/:id" element={<SinglePostPage />}></Route>
       <Route path="*" element={<Page404 />}></Route>
       <Route path="favorites" element={<Page404 />}></Route>
