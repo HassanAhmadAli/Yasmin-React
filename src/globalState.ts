@@ -32,12 +32,6 @@ export interface IGlobalState {
   setSocket: (socket: Socket) => void;
   logout: () => void;
 }
-/*
-  setUser: (user: AppUser) => {
-  
-    set(() => ({ user }));
-  },
-*/
 export const useGlobalState = create<IGlobalState>((set) => ({
   socket: null,
   setSocket: (socket: Socket) => set(() => ({ socket })),

@@ -1,6 +1,7 @@
 import { AppSidebar } from "../../components/Sidebar";
 import { AppNavigationMenu } from "../../components/NavigationBar";
 import { Content } from "./content";
+import { SearchArea } from "./component/searchArea";
 
 export function PostsPage() {
   return (
@@ -11,6 +12,7 @@ export function PostsPage() {
             <AppNavigationMenu />
           </nav>
           <main className="flex-1 p-4">
+            <SearchArea onSearch={() => {}} />
             <Content />
           </main>
         </div>
