@@ -12,7 +12,7 @@ import { SinglePostPage } from "./pages/post";
 export default function Router() {
   return (
     <Routes>
-      <Route index={true} element={<Dashboard />} />
+      <Route path="customers" element={<Dashboard />} />
       <Route path="about" element={<Doc />} />
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />

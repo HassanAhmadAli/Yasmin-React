@@ -6,6 +6,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { ModeToggle } from "./mode-toggle";
 interface navigationItemProperties {
   path: string;
   name: string;
@@ -35,12 +36,8 @@ export function AppNavigationMenu() {
       <NavigationMenuList>
         {[
           {
-            path: "/",
+            path: "/customers",
             name: "Customer Profiles",
-          },
-          {
-            path: "/about",
-            name: "About",
           },
           {
             path: "/products",
@@ -50,8 +47,13 @@ export function AppNavigationMenu() {
             path: "/posts",
             name: "Posts",
           },
+          {
+            path: "/about",
+            name: "About",
+          },
         ].map((item) => createNavigationItem(navigate, item))}
       </NavigationMenuList>
+      <ModeToggle />
     </NavigationMenu>
   );
 }

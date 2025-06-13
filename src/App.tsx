@@ -5,6 +5,7 @@ import AppRoutes from "./routes";
 import { useEffect } from "react";
 import { useGlobalState } from "./globalState";
 import { io } from "socket.io-client";
+import { ThemeProvider } from "./components/theme-provider";
 export default function App() {
   useEffect(() => {
     useGlobalState.getState().setIsMobile(window.innerWidth < 768);
@@ -31,9 +32,9 @@ export default function App() {
     };
   }, [useGlobalState.getState().jwt]);
   return (
-    <>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppRoutes />
       <Toaster />
-    </>
+    </ThemeProvider>
   );
 }
