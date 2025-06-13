@@ -3,7 +3,7 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGlobalState } from "@/globalState";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Customer } from "@/model/user";
+import { Customer } from "@/model/customer";
 import { useDashboardState } from "../state";
 
 export function Item({ user }: { user: Customer | null }) {

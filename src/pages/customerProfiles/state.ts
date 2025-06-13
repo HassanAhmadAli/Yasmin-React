@@ -1,4 +1,4 @@
-import { Customer } from "@/model/user";
+import { Customer } from "@/model/customer";
 import { create } from "zustand";
 
 export interface IDashboardState {

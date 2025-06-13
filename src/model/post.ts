@@ -1,4 +1,4 @@
-import { Customer } from "./user";
+import { Customer } from "./customer";
 
 export interface Post {
   _id: string;
