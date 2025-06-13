@@ -6,7 +6,7 @@ import { handleSearch } from "../helper/handleSearch";
 export function SearchArea() {
   const setSearchTerm = usePostState((state) => state.setSearchTerm);
   return (
-    <div className="relative flex w-[95%] flex-row items-center justify-center">
+    <div className="relative mb-2 flex w-[95%] flex-row items-center justify-center">
       <Input
         className="w-full pr-10"
         placeholder="Search users..."
