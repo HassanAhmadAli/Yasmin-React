@@ -84,6 +84,12 @@ export function Content() {
             <div className="flex items-center gap-2">
               <FaUser className="h-4 w-4" />
               <span>By {post.customer.name}</span>
+              <div className="border-3 flex h-8 w-8 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white">
+                {post.customer.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <FaClock className="h-4 w-4" />
@@ -94,13 +100,7 @@ export function Content() {
         <CardContent>
           <div className="prose prose-lg max-w-none">
             <div className="mb-8">
-              <img
-                src={`https://api.dicebear.com/7.x/initials/svg?seed=${post.customer.name}`}
-                alt={post.customer.name}
-                className="border-primary/20 mb-4 h-16 w-16 rounded-full border-2"
-              />
               <div className="text-gray-600">
-                <p className="font-medium">Author: {post.customer.name}</p>
                 <p>{post.customer.email}</p>
                 <p>from : {post.customer.company.name}</p>
               </div>
