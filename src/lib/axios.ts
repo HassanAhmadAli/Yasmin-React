@@ -1,4 +1,3 @@
-import { useGlobalState } from "@/globalState";
 import axios from "axios";
 
 const axiosInstance = axios.create({

@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { useSignupStore } from "../state";
-import { shallow } from "zustand/shallow";
 export function PasswordConfirmInput() {
   const showConfirmPassword = useSignupStore(
     (state) => state.showConfirmPassword,

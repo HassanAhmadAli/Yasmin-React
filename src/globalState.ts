@@ -15,5 +15,5 @@ export const useGlobalState = create<IGlobalState>((set) => ({
   isMobile: false,
   setIsMobile: (val: boolean) => set(() => ({ isMobile: val })),
   jwt: "",
-  setJwt: () => set((state) => ({})),
+  setJwt: () => set(() => ({})),
 }));

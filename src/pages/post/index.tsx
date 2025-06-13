@@ -1,10 +1,9 @@
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getPostById } from "../posts/helper/fetchData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FaUser, FaClock } from "react-icons/fa";
 import { usePostPageState } from "./state";
-import { shallow } from "zustand/shallow";
 export function SinglePostPage() {
   const { id } = useParams<{ id: string }>();
 
