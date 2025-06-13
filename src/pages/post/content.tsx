@@ -81,14 +81,13 @@ export function Content() {
           </CardTitle>
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-2">
-              <FaUser className="h-4 w-4" />
-              <span>By {post.customer.name}</span>
               <div className="border-3 flex h-8 w-8 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white">
                 {post.customer.name
                   .split(" ")
                   .map((n) => n[0])
                   .join("")}
               </div>
+              <span>{post.customer.name}</span>
             </div>
             <div className="flex items-center gap-2">
               <FaClock className="h-4 w-4" />

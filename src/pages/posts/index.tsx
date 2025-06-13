@@ -12,7 +12,7 @@ export function PostsPage() {
             <AppNavigationMenu />
           </nav>
           <main className="flex-1 p-4">
-            <SearchArea onSearch={() => {}} />
+            <SearchArea />
             <Content />
           </main>
         </div>
