@@ -1,8 +1,6 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "../../../model/product";
-import {
-  Drawer
-} from "@/components/ui/drawer";
+import { Drawer } from "@/components/ui/drawer";
 import { Star } from "lucide-react";
 import { useProductPageState } from "../state";
 import { ProductDrawer } from "./productDrawer";
@@ -43,7 +41,13 @@ export function RealCellContent({ products }: { products: Array<Product> }) {
           <h2 className="flex flex-row-reverse">
             <span className="text-sm">{product.category}</span>
           </h2>
-
+          {/* 
+            className={`h-6 w-6 cursor-pointer ${
+            rating >= star
+              ? "fill-orange-400 text-orange-400"
+              : "fill-white-400 text-orange-400"
+          }`}
+           */}
           <div className="mb-2 flex items-center gap-2">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((i) =>

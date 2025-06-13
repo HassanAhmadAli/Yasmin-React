@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/card";
 import { Post } from "@/model/post";
 import { NavigateFunction } from "react-router";
-import { FaArrowRight, FaStar } from "react-icons/fa";
+import {} from "react-icons";
+import { ArrowRight, Star } from "lucide-react";
 const extractWords = (text: string) => {
   const words = text.split(/\s+/);
   if (words.length <= 30) {
@@ -16,11 +17,12 @@ const extractWords = (text: string) => {
   }
   return words.slice(0, 25).join(" ") + "...";
 };
+
 export function PostCard(
   { _id, title, body, customer }: Post,
   navigate: NavigateFunction,
-  onFavorite?: () => void,
-  isFavorite?: boolean,
+  onFavorite: () => void,
+  isFavorite: boolean,
 ) {
   return (
     <Card className="h-4xl flex w-[30%] min-w-[300px] flex-col bg-white/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/40 hover:shadow-xl">
@@ -35,7 +37,7 @@ export function PostCard(
         </p>
         <div className="mt-auto flex items-center gap-3 text-sm text-gray-500">
           <div className="relative">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-gray-300 bg-purple-600 font-semibold text-white">
+            <div className="border-3 flex h-10 w-10 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white">
               {customer.name
                 .split(" ")
                 .map((n) => n[0])
@@ -54,21 +56,17 @@ export function PostCard(
           onClick={() => navigate(`/post/${_id}`)}
           className="hover:text-primary hover:bg-primary/5 flex items-center gap-2 transition-colors"
         >
-          Read More <FaArrowRight className="ml-1 h-4 w-4" />
+          Read More <ArrowRight className="ml-1 h-4 w-4" />
         </Button>
-
-        {onFavorite && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onFavorite}
-            className={`${
-              isFavorite ? "text-yellow-500" : "text-gray-400"
+        <Button variant="ghost" size="sm" onClick={onFavorite}>
+          <Star
+            className={`h-6 w-6 cursor-pointer ${
+              isFavorite
+                ? "fill-orange-400 text-orange-400"
+                : "fill-white-400 text-orange-400"
             } transition-colors hover:bg-yellow-50`}
-          >
-            <FaStar className="h-4 w-4" />
-          </Button>
-        )}
+          />
+        </Button>
       </CardFooter>
     </Card>
   );
