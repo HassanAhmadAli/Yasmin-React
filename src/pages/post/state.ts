@@ -12,6 +12,7 @@ interface PostPageState {
   setIsLoading: (val: boolean) => void;
   setError: (error: string | null) => void;
   addComment: (comment: Comment) => void;
+  resetState: () => void;
 }
 
 export const usePostPageState = create<PostPageState>((set) => ({
@@ -25,4 +26,5 @@ export const usePostPageState = create<PostPageState>((set) => ({
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
   setError: (error: string | null) => set({ error }),
   addComment: (comment: Comment) => set(state => ({ comments: [...state.comments, comment] })),
+  resetState: () => set(state => ({ comments: [], currentComment: "" }))
 }));

@@ -20,6 +20,7 @@ export function Content() {
   const post = usePostPageState((state) => state.post);
   const isLoading = usePostPageState((state) => state.isLoading);
   const error = usePostPageState((state) => state.error);
+  const resetState = usePostPageState((state) => state.resetState);
   const setPost = usePostPageState((state) => state.setPost);
   const comments = usePostPageState((state) => state.comments);
   const setIsLoading = usePostPageState((state) => state.setIsLoading);
@@ -38,9 +39,9 @@ export function Content() {
       } catch (error) {
         setError("Failed to load post. Please try again later.");
         console.error("Error fetching post:", error);
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
+      resetState();
     }
     fetchPost();
   }, [id]);
@@ -101,7 +102,7 @@ export function Content() {
               <div className="text-gray-600">
                 <p className="font-medium">Author: {post.customer.name}</p>
                 <p>{post.customer.email}</p>
-                <p>{post.customer.company.name}</p>
+                <p>from : {post.customer.company.name}</p>
               </div>
             </div>
             <article className="whitespace-pre-wrap leading-relaxed">
