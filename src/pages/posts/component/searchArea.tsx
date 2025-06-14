@@ -15,7 +15,11 @@ export function SearchArea() {
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleSearch();
+            try {
+              handleSearch();
+            } catch (error) {
+              console.log("error");
+            }
           }
         }}
       />
