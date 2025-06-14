@@ -9,6 +9,7 @@ import { Page404 } from "./pages/404";
 import { PostsPage } from "./pages/posts";
 import { SinglePostPage } from "./pages/post";
 import { ProfilePage } from "./pages/profile";
+import { FavoritePage } from "./pages/favorite";
 
 export default function Router() {
   return (
@@ -22,7 +23,7 @@ export default function Router() {
       <Route index element={<PostsPage />}></Route>
       <Route path="post/:id" element={<SinglePostPage />}></Route>
       <Route path="*" element={<Page404 />}></Route>
-      <Route path="favorites" element={<Page404 />}></Route>
+      <Route path="favorites" element={<FavoritePage />}></Route>
       <Route path="profile" element={<ProfilePage />}></Route>
     </Routes>
   );

@@ -51,6 +51,10 @@ export function AppNavigationMenu() {
             path: "/about",
             name: "About",
           },
+          {
+            path: "/favorites",
+            name: "Favorites",
+          },
         ].map((item) => createNavigationItem(navigate, item))}
       </NavigationMenuList>
       <ModeToggle />
