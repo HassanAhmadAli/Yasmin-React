@@ -15,6 +15,21 @@ import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
 import { Edit, Trash } from "lucide-react";
 
+function CommentTextArea() {
+  const currentComment = usePostPageState((state) => state.currentComment);
+  const setCurrentComment = usePostPageState(
+    (state) => state.setCurrentComment,
+  );
+  return (
+    <Textarea
+      value={currentComment}
+      onChange={(e) => {
+        setCurrentComment(e.target.value);
+      }}
+    />
+  );
+}
+
 export function Content() {
   const { id } = useParams<{ id: string }>();
 
@@ -31,7 +46,6 @@ export function Content() {
   const setCurrentComment = usePostPageState(
     (state) => state.setCurrentComment,
   );
-  const newCommentTextAreaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -112,17 +126,12 @@ export function Content() {
           </div>
         </CardContent>
         <CardFooter className="gap-4">
-          <Textarea
-            ref={newCommentTextAreaRef}
-            onChange={(e) => {
-              setCurrentComment(e.target.value);
-            }}
-          />
+          <CommentTextArea />
           <Button
             variant="default"
             onClick={() => {
               saveComment();
-              newCommentTextAreaRef.current!.value = "";
+              setCurrentComment("");
             }}
           >
             Comment

@@ -36,7 +36,7 @@ export const usePostPageState = create<PostPageState>((set) => ({
   post: null,
   error: null,
   comments: getComments(),
-  currentComment: "string",
+  currentComment: "",
   setCurrentComment: (currentComment: string) => set({ currentComment }),
   setPost: (post: Post) => set({ post }),
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
