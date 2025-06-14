@@ -13,6 +13,13 @@ import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
 export function Content() {
   const { id } = useParams<{ id: string }>();
 
@@ -127,14 +134,18 @@ export function Content() {
         </CardFooter>
         <CardContent className="flex grid gap-4">
           {comments.map((comment) => (
-            <Card key={comment._id}>
-              <CardHeader>{comment.text}</CardHeader>
-              <span className="font-medium">
-                By
-                <span className="text-primary/80 dark:text-primary/920">
-                  {comment.authorName}
-                </span>
-              </span>
+            <Card className="gap-2 pb-0 pb-1.5 pl-4 pt-1" key={comment._id}>
+              <div className="flex flex-row gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-gray-300 bg-purple-600 text-[12px] font-semibold text-white dark:border-gray-700 dark:bg-purple-400 dark:text-black">
+                  {comment.authorName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
+                </div>
+                <span>{comment.authorName}</span>,
+                <span>{dateFormatter.format(comment.date)}</span>
+              </div>
+              <span className="font-medium pl-0.5">{comment.text}</span>
             </Card>
           ))}
         </CardContent>
