@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FaUser, FaClock } from "react-icons/fa";
+import { FaClock } from "react-icons/fa";
 import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -74,14 +74,14 @@ export function Content() {
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
-      <Card className="bg-white/50 backdrop-blur-sm">
+      <Card className="bg-white/50 backdrop-blur-sm dark:bg-black/50">
         <CardHeader>
           <CardTitle className="text-primary mb-4 text-3xl font-bold">
             {post.title}
           </CardTitle>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
+          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-2">
-              <div className="border-3 flex h-8 w-8 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white">
+              <div className="border-3 flex h-8 w-8 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white dark:border-gray-700 dark:bg-purple-400 dark:text-black">
                 {post.customer.name
                   .split(" ")
                   .map((n) => n[0])
