@@ -2,7 +2,15 @@ import { AppSidebar } from "@/components/Sidebar";
 import { AppNavigationMenu } from "@/components/NavigationBar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router";
+import { useGlobalState } from "@/globalState";
 function AboutPage() {
+  const user = useGlobalState((state) => state.user);
+  const Navigate = useNavigate();
+  if (!user) {
+    Navigate("/login");
+    return null;
+  }
   return (
     <div className="grid max-w-[100vw] gap-4 p-4">
       <AppSidebar>

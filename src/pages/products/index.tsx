@@ -5,7 +5,15 @@ import { SearchArea } from "./components/search";
 import { Content } from "./components/content";
 import { PaginationItems } from "./components/paginationItems";
 import { handleSearch } from "./helper/handleSearch";
+import { Navigate, useNavigate } from "react-router";
+import { useGlobalState } from "@/globalState";
 export function ProductsPage() {
+  const user = useGlobalState((state) => state.user);
+  const Navigate = useNavigate();
+  if (!user) {
+    Navigate("/login");
+    return null;
+  }
   return (
     <div className="grid max-w-[100vw] gap-4 p-4">
       <AppSidebar>

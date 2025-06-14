@@ -4,6 +4,7 @@ import { fetchAndSetUsers } from "./helper/fetchData";
 import { usePostState } from "./state";
 import { PostCard } from "./component/postCard";
 import { useNavigate } from "react-router";
+import { useGlobalState } from "@/globalState";
 
 // todo: implement favorite
 export function Content() {
@@ -12,6 +13,11 @@ export function Content() {
   const navigate = useNavigate();
   const isLoading = usePostState((state) => state.isLoading);
   const setIsLoading = usePostState((state) => state.setIsLoading);
+  const user = useGlobalState((state) => state.user);
+  if (!user) {
+    navigate("/login");
+    return null;
+  }
   useEffect(() => {
     fetchAndSetUsers();
   }, []);

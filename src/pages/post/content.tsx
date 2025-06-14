@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import { getPostById } from "../posts/helper/fetchData";
 import {
@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
 import { Edit, Star, Trash } from "lucide-react";
+import { useGlobalState } from "@/globalState";
 
 function CommentTextArea() {
   const currentComment = usePostPageState((state) => state.currentComment);
@@ -49,6 +50,12 @@ export function Content() {
     if (id !== undefined) return state.getIsPostFavorite(id);
     return false;
   });
+  const user = useGlobalState((state) => state.user);
+  const Navigate = useNavigate();
+  if (!user) {
+    Navigate("/login");
+    return null;
+  }
   useEffect(() => {
     async function fetchPost() {
       try {
