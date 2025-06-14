@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { getPostById } from "../posts/helper/fetchData";
 import {
   Card,
@@ -32,7 +32,6 @@ function CommentTextArea() {
 
 export function Content() {
   const { id } = useParams<{ id: string }>();
-
   const post = usePostPageState((state) => state.post);
   const isLoading = usePostPageState((state) => state.isLoading);
   const error = usePostPageState((state) => state.error);
@@ -138,7 +137,7 @@ export function Content() {
         </CardFooter>
         <CardContent className="flex grid gap-4">
           {comments.map((comment) => (
-            <Card className="gap-2 pb-0 pb-1.5 pl-4 pt-1" key={comment._id}>
+            <Card className="gap-2 pb-1.5 pl-4 pt-1" key={comment._id}>
               <div className="flex flex-row gap-2">
                 <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-gray-300 bg-purple-600 text-[12px] font-semibold text-white dark:border-gray-700 dark:bg-purple-400 dark:text-black">
                   {comment.authorName
