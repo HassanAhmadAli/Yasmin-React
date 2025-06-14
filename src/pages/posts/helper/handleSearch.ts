@@ -9,8 +9,7 @@ export const fetchPosts = async (): Promise<Post[]> => {
 export const handleSearch = async () => {
     const term = usePostState.getState().searchTerm.trim();
     if (term === "") {
-        fetchAndSetUsers();
-        return;
+        return fetchAndSetUsers();
     }
     try {
         usePostState.getState().setIsLoading(true);
