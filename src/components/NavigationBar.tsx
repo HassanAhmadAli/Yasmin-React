@@ -36,6 +36,14 @@ export function AppNavigationMenu() {
       <NavigationMenuList>
         {[
           {
+            path: "/posts",
+            name: "Posts",
+          },
+          {
+            path: "/favorites",
+            name: "Favorites",
+          },
+          {
             path: "/customers",
             name: "Customer Profiles",
           },
@@ -43,17 +51,10 @@ export function AppNavigationMenu() {
             path: "/products",
             name: "Products",
           },
-          {
-            path: "/posts",
-            name: "Posts",
-          },
+
           {
             path: "/about",
             name: "About",
-          },
-          {
-            path: "/favorites",
-            name: "Favorites",
           },
         ].map((item) => createNavigationItem(navigate, item))}
       </NavigationMenuList>
