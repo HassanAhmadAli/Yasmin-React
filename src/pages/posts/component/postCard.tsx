@@ -18,7 +18,13 @@ const extractWords = (text: string) => {
   return words.slice(0, 25).join(" ") + "...";
 };
 
-export function PostCard(post: Post, navigate: NavigateFunction) {
+export function PostCard({
+  post,
+  navigate,
+}: {
+  post: Post;
+  navigate: NavigateFunction;
+}) {
   // const isFavorite = usePostPageState((state) =>
   //   state.getIsPostFavorite(post._id),
   // );
@@ -26,10 +32,7 @@ export function PostCard(post: Post, navigate: NavigateFunction) {
   // const toggleFavorited = usePostPageState((state) => state.toggleFavorited);
   // const toggleFavorited = (s: string) => {};
   return (
-    <Card
-      key={post._id}
-      className="h-4xl flex w-[30%] min-w-[300px] flex-col bg-white/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/40 hover:shadow-xl dark:bg-black/50 dark:hover:bg-black/40"
-    >
+    <Card className="h-4xl flex w-[30%] min-w-[300px] flex-col bg-white/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/40 hover:shadow-xl dark:bg-black/50 dark:hover:bg-black/40">
       <CardHeader className="space-y-2 pb-3">
         <CardTitle className="text-primary/90 hover:text-primary h-15 line-clamp-2 text-xl font-bold">
           {post.title}

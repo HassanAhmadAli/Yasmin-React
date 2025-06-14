@@ -19,7 +19,9 @@ export function Content() {
   }, []);
   return (
     <div className="flex flex-wrap gap-4">
-      {posts.map((post) => PostCard(post, navigate))}
+      {posts.map((post) => (
+        <PostCard key={post._id} post={post} navigate={navigate} />
+      ))}
     </div>
   );
 }
