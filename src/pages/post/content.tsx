@@ -137,9 +137,9 @@ export function Content() {
         </CardFooter>
         <CardContent className="flex grid gap-4">
           {comments.map((comment) => (
-            <Card className="gap-2 pb-1.5 pl-4 pt-1" key={comment._id}>
+            <Card className="gap-2 pb-1.5 pl-4 pt-4" key={comment._id}>
               <div className="flex flex-row gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-gray-300 bg-purple-600 text-[12px] font-semibold text-white dark:border-gray-700 dark:bg-purple-400 dark:text-black">
+                <div className="border-3 flex h-8 w-8 items-center justify-center rounded-full border-gray-300 bg-purple-600 font-semibold text-white dark:border-gray-700 dark:bg-purple-400 dark:text-black">
                   {comment.authorName
                     .split(" ")
                     .map((n) => n[0])
@@ -149,6 +149,7 @@ export function Content() {
                 <span>{comment.date}</span>
                 <Button
                   variant="destructive"
+                  className="ml-auto"
                   onClick={() => {
                     removeComment(comment._id);
                   }}
@@ -157,6 +158,7 @@ export function Content() {
                 </Button>
                 <Button
                   variant="default"
+                  className="mr-3"
                   onClick={() => {
                     editComment(comment._id);
                   }}
