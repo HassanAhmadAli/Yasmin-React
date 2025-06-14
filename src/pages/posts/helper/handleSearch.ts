@@ -1,17 +1,16 @@
 import { axiosInstance } from "@/lib/axios";
 import { Post } from "@/model/post";
 import { usePostState } from "../state";
+import { fetchAndSetUsers } from "./fetchData";
 export const fetchPosts = async (): Promise<Post[]> => {
     const response = await axiosInstance.get("/api/post/");
     return response.data;
 };
 export const handleSearch = async () => {
-    const term = usePostState.getState().searchTerm;
-    if (term.trim() === "") {
-        usePostState.getState().setIsLoading(true);
-        const data: Post[] = await fetchPosts();
-        usePostState.getState().setPosts(data);
-        usePostState.getState().setIsLoading(false);
+    const term = usePostState.getState().searchTerm.trim();
+    if (term === "") {
+        fetchAndSetUsers();
+        return;
     }
     try {
         usePostState.getState().setIsLoading(true);
