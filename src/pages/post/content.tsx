@@ -98,7 +98,7 @@ export function Content() {
         <CardContent>
           <div className="prose prose-lg max-w-none">
             <div className="mb-8">
-              <div className="text-gray-600">
+              <div className="text-gray-600 dark:text-gray-400">
                 <p>{post.customer.email}</p>
                 <p>from : {post.customer.company.name}</p>
               </div>
@@ -130,7 +130,10 @@ export function Content() {
             <Card key={index}>
               <CardHeader>{comment.text}</CardHeader>
               <span className="font-medium">
-                By <span className="text-primary/80">{comment.authorName}</span>
+                By
+                <span className="text-primary/80 dark:text-primary/920">
+                  {comment.authorName}
+                </span>
               </span>
             </Card>
           ))}
