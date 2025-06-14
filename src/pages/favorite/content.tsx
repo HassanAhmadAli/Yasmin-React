@@ -14,11 +14,12 @@ export function Content() {
   const isLoading = useFavoritePageState((state) => state.isLoading);
   const setIsLoading = useFavoritePageState((state) => state.setIsLoading);
   const user = useGlobalState((state) => state.user);
-    const Navigate = useNavigate();
+  const Navigate = useNavigate();
+  useEffect(() => {
     if (!user) {
       Navigate("/login");
-      return null;
     }
+  }, []);
   useEffect(() => {
     getPostsByIds();
   }, []);

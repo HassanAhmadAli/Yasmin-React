@@ -52,10 +52,11 @@ export function Content() {
   });
   const user = useGlobalState((state) => state.user);
   const Navigate = useNavigate();
-  if (!user) {
-    Navigate("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      Navigate("/login");
+    }
+  }, []);
   useEffect(() => {
     async function fetchPost() {
       try {

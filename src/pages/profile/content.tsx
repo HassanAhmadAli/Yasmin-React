@@ -3,6 +3,7 @@ import { usePostPageState } from "../post/state";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 export function Content() {
   const user = useGlobalState((state) => state.user);
@@ -14,10 +15,11 @@ export function Content() {
     (comment) => comment.authorId === user?._id,
   );
 
-  if (!user) {
-    navigate("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleLogout = () => {
     logout();

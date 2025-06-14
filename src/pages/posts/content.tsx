@@ -10,14 +10,15 @@ import { useGlobalState } from "@/globalState";
 export function Content() {
   const setPosts = usePostState((state) => state.setPosts);
   const posts = usePostState((state) => state.posts);
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
   const isLoading = usePostState((state) => state.isLoading);
   const setIsLoading = usePostState((state) => state.setIsLoading);
   const user = useGlobalState((state) => state.user);
-  if (!user) {
-    navigate("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      Navigate("/login");
+    }
+  }, []);
   useEffect(() => {
     fetchAndSetUsers();
   }, []);
@@ -33,7 +34,7 @@ export function Content() {
   return (
     <div className="flex flex-wrap gap-4">
       {posts.map((post) => (
-        <PostCard key={post._id} post={post} navigate={navigate} />
+        <PostCard key={post._id} post={post} navigate={Navigate} />
       ))}
     </div>
   );

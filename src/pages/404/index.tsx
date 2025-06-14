@@ -3,14 +3,17 @@ import { AppSidebar } from "../../components/Sidebar";
 import { AppNavigationMenu } from "../../components/NavigationBar";
 import { Content } from "./content";
 import { useGlobalState } from "@/globalState";
+import { useEffect } from "react";
 
 export function Page404() {
   const user = useGlobalState((state) => state.user);
   const Navigate = useNavigate();
-  if (!user) {
-    Navigate("/login");
-    return null;
-  }
+
+  useEffect(() => {
+    if (!user) {
+      Navigate("/login");
+    }
+  }, []);
   const pathname = useLocation().pathname;
   return (
     <div className="grid max-w-[100vw] gap-4 p-4">
