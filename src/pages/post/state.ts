@@ -33,14 +33,18 @@ interface PostPageState {
   resetState: () => void;
   removeComment: (_id: number) => void
   editComment: (_id: number) => void;
+  getIsPostFavorite: (_id: string) => boolean,
 }
 
-export const usePostPageState = create<PostPageState>((set) => ({
+export const usePostPageState = create<PostPageState>((set, get) => ({
   isLoading: true,
   post: null,
   error: null,
   favoritedPosts: new Set<string>(),
   comments: getComments(),
+  getIsPostFavorite: (_id: string) => {
+    return get().favoritedPosts.has(_id);
+  },
   addToFavorited: (post: Post) => {
     set(state => {
       const favoritedPosts = new Set<string>(state.favoritedPosts);

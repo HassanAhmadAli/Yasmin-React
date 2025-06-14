@@ -20,11 +20,11 @@ const extractWords = (text: string) => {
 
 export function PostCard(post: Post, navigate: NavigateFunction) {
   // const isFavorite = usePostPageState((state) =>
-  //   state.favoritedPosts.has(post._id),
+  //   state.getIsPostFavorite(post._id),
   // );
-  // const toggleFavorited = usePostPageState((state) => state.toggleFavorited);
   const isFavorite = true;
-  const toggleFavorited = (s: string) => {};
+  // const toggleFavorited = usePostPageState((state) => state.toggleFavorited);
+  // const toggleFavorited = (s: string) => {};
   return (
     <Card
       key={post._id}
@@ -69,7 +69,7 @@ export function PostCard(post: Post, navigate: NavigateFunction) {
           variant="ghost"
           size="sm"
           onClick={() => {
-            toggleFavorited(post);
+            usePostPageState.getState().toggleFavorited(post);
           }}
         >
           <Star
