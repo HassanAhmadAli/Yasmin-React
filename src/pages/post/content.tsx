@@ -13,6 +13,7 @@ import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
+import { Edit, Trash } from "lucide-react";
 
 export function Content() {
   const { id } = useParams<{ id: string }>();
@@ -25,6 +26,8 @@ export function Content() {
   const comments = usePostPageState((state) => state.comments);
   const setIsLoading = usePostPageState((state) => state.setIsLoading);
   const setError = usePostPageState((state) => state.setError);
+  const removeComment = usePostPageState((state) => state.removeComment);
+  const editComment = usePostPageState((state) => state.editComment);
   const setCurrentComment = usePostPageState(
     (state) => state.setCurrentComment,
   );
@@ -137,6 +140,22 @@ export function Content() {
                 </div>
                 <span>{comment.authorName}</span> {","}
                 <span>{comment.date}</span>
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    removeComment(comment._id);
+                  }}
+                >
+                  <Trash />
+                </Button>
+                <Button
+                  variant="default"
+                  onClick={() => {
+                    editComment(comment._id);
+                  }}
+                >
+                  <Edit />
+                </Button>
               </div>
               <span className="pl-0.5 font-medium">{comment.text}</span>
             </Card>
