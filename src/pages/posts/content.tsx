@@ -6,10 +6,6 @@ import { usePostState } from "./state";
 import { PostCard } from "./component/postCard";
 import { useNavigate } from "react-router";
 // todo: implement favorite
-const onFavorite = () => {
-  isFav = !isFav;
-};
-let isFav = false;
 export function Content() {
   const setPosts = usePostState((state) => state.setPosts);
   const posts = usePostState((state) => state.posts);
@@ -23,7 +19,7 @@ export function Content() {
   }, []);
   return (
     <div className="flex flex-wrap gap-4">
-      {posts.map((post) => PostCard(post, navigate, onFavorite, isFav))}
+      {posts.map((post) => PostCard(post, navigate))}
     </div>
   );
 }

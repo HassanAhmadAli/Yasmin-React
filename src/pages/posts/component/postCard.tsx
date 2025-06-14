@@ -9,6 +9,7 @@ import {
 import { Post } from "@/model/post";
 import { NavigateFunction } from "react-router";
 import { ArrowRight, Star } from "lucide-react";
+import { usePostPageState } from "@/pages/post/state";
 const extractWords = (text: string) => {
   const words = text.split(/\s+/);
   if (words.length <= 30) {
@@ -17,12 +18,11 @@ const extractWords = (text: string) => {
   return words.slice(0, 25).join(" ") + "...";
 };
 
-export function PostCard(
-  post: Post,
-  navigate: NavigateFunction,
-  onFavorite: () => void,
-  isFavorite: boolean,
-) {
+export function PostCard(post: Post, navigate: NavigateFunction) {
+  const isFavorite = usePostPageState((state) =>
+    state.favoritedPosts.has(post._id),
+  );
+  const toggleFavorited = usePostPageState((state) => state.toggleFavorited);
   return (
     <Card
       key={post._id}
@@ -47,7 +47,7 @@ export function PostCard(
             </div>
           </div>
           <span className="font-medium">
-            By {" "}
+            By{" "}
             <span className="text-primary/80 dark:text-primary/80">
               {post.customer.name}
             </span>
@@ -63,7 +63,13 @@ export function PostCard(
         >
           Read More <ArrowRight className="ml-1 h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="sm" onClick={onFavorite}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            toggleFavorited(post);
+          }}
+        >
           <Star
             className={`h-6 w-6 cursor-pointer ${
               isFavorite

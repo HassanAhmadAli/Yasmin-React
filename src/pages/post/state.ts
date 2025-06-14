@@ -20,6 +20,10 @@ interface PostPageState {
   error: string | null;
   comments: Comment[];
   currentComment: string;
+  favoritedPosts: Set<string>;
+  addToFavorited: (post: Post) => void;
+  removeFromFavorited: (post: Post) => void;
+  toggleFavorited: (post: Post) => void;
   setCurrentComment: (text: string) => void;
   setPost: (post: Post) => void;
   setIsLoading: (val: boolean) => void;
@@ -35,7 +39,35 @@ export const usePostPageState = create<PostPageState>((set) => ({
   isLoading: true,
   post: null,
   error: null,
+  favoritedPosts: new Set<string>(),
   comments: getComments(),
+  addToFavorited: (post: Post) => {
+    set(state => {
+      const favoritedPosts = new Set<string>(state.favoritedPosts);
+      favoritedPosts.add(post._id);
+      return { favoritedPosts };
+    })
+  },
+  removeFromFavorited: (post: Post) => {
+    set(state => {
+      const favoritedPosts = new Set<string>(state.favoritedPosts);
+      favoritedPosts.delete(post._id);
+      return { favoritedPosts };
+    })
+  },
+  toggleFavorited: (post: Post) => {
+    set(state => {
+      const favoritedPosts = new Set<string>(state.favoritedPosts);
+
+      if (favoritedPosts.has(post._id)) {
+        favoritedPosts.delete(post._id);
+      }
+      else {
+        favoritedPosts.add(post._id);
+      }
+      return { favoritedPosts };
+    })
+  },
   currentComment: "",
   setCurrentComment: (currentComment: string) => set({ currentComment }),
   setPost: (post: Post) => set({ post }),

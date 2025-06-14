@@ -36,7 +36,6 @@ export function Content() {
   const post = usePostPageState((state) => state.post);
   const isLoading = usePostPageState((state) => state.isLoading);
   const error = usePostPageState((state) => state.error);
-
   const setPost = usePostPageState((state) => state.setPost);
   const comments = usePostPageState((state) => state.comments);
   const setIsLoading = usePostPageState((state) => state.setIsLoading);
