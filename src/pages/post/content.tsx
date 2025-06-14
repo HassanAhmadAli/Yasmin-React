@@ -13,7 +13,7 @@ import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
-import { Edit, Trash } from "lucide-react";
+import { Edit, Star, Trash } from "lucide-react";
 
 function CommentTextArea() {
   const currentComment = usePostPageState((state) => state.currentComment);
@@ -44,6 +44,11 @@ export function Content() {
   const setCurrentComment = usePostPageState(
     (state) => state.setCurrentComment,
   );
+  const toggleFavorited = usePostPageState((state) => state.toggleFavorited);
+  const isFavorite = usePostPageState((state) => {
+    if (id !== undefined) return state.getIsPostFavorite(id);
+    return false;
+  });
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -108,6 +113,22 @@ export function Content() {
               <FaClock className="h-4 w-4" />
               <span>5 mins read</span>
             </div>
+            <Button
+              variant="ghost"
+              className="ml-auto"
+              size="sm"
+              onClick={() => {
+                toggleFavorited(post);
+              }}
+            >
+              <Star
+                className={`h-6 w-6 cursor-pointer ${
+                  isFavorite
+                    ? "fill-orange-400 text-orange-400"
+                    : "fill-white-400 text-orange-400"
+                } transition-colors hover:bg-yellow-50`}
+              />
+            </Button>
           </div>
         </CardHeader>
         <CardContent>
