@@ -49,7 +49,7 @@ function SearchArea({ onSearch }: { onSearch: () => void }) {
       <div className="relative flex-1">
         <Input
           className="w-full pr-10"
-          placeholder="Search users..."
+          placeholder="Search Products..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}

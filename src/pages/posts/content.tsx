@@ -7,9 +7,9 @@ import { PostCard } from "./component/postCard";
 import { useNavigate } from "react-router";
 // todo: implement favorite
 const onFavorite = () => {
-  isFav = false;
+  isFav = !isFav;
 };
-let isFav = true;
+let isFav = false;
 export function Content() {
   const setPosts = usePostState((state) => state.setPosts);
   const posts = usePostState((state) => state.posts);

@@ -9,7 +9,7 @@ export function SearchArea() {
     <div className="relative mb-2 flex w-[95%] flex-row items-center justify-center">
       <Input
         className="w-full pr-10"
-        placeholder="Search users..."
+        placeholder="Search Posts..."
         onChange={(e) => {
           setSearchTerm(e.target.value);
         }}

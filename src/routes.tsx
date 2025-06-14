@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 import { Signup } from "@/pages/signup/index";
 import { Dashboard } from "@/pages/customerProfiles/index";
 import { Login } from "@/pages/login/index";
-import { Doc } from "@/pages/about/index";
+import { AboutPage } from "@/pages/about/index";
 import { ProductsPage } from "@/pages/products/index";
 import { Page404 } from "./pages/404";
 import { PostsPage } from "./pages/posts";
@@ -13,7 +13,7 @@ export default function Router() {
   return (
     <Routes>
       <Route path="customers" element={<Dashboard />} />
-      <Route path="about" element={<Doc />} />
+      <Route path="about" element={<AboutPage />} />
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />
       <Route path="products" element={<ProductsPage />} />

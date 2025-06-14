@@ -5,4 +5,5 @@ export interface Post {
   customer: Customer;
   title: string;
   body: string;
+  isFav: boolean;
 }
