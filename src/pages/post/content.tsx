@@ -13,20 +13,14 @@ import { usePostPageState } from "./state";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { saveComment } from "./helper/saveComment";
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-});
+
 export function Content() {
   const { id } = useParams<{ id: string }>();
 
   const post = usePostPageState((state) => state.post);
   const isLoading = usePostPageState((state) => state.isLoading);
   const error = usePostPageState((state) => state.error);
-  const resetState = usePostPageState((state) => state.resetState);
+
   const setPost = usePostPageState((state) => state.setPost);
   const comments = usePostPageState((state) => state.comments);
   const setIsLoading = usePostPageState((state) => state.setIsLoading);
@@ -47,7 +41,6 @@ export function Content() {
         console.error("Error fetching post:", error);
       }
       setIsLoading(false);
-      resetState();
     }
     fetchPost();
   }, [id]);
@@ -142,10 +135,10 @@ export function Content() {
                     .map((n) => n[0])
                     .join("")}
                 </div>
-                <span>{comment.authorName}</span>,
-                <span>{dateFormatter.format(comment.date)}</span>
+                <span>{comment.authorName}</span> {","}
+                <span>{comment.date}</span>
               </div>
-              <span className="font-medium pl-0.5">{comment.text}</span>
+              <span className="pl-0.5 font-medium">{comment.text}</span>
             </Card>
           ))}
         </CardContent>

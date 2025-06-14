@@ -2,7 +2,7 @@ export interface Comment {
     text: string;
     authorName: string;
     authorId: number;
-    date: Date;
+    date: string;
     _id: number;
     email:string;
 }
