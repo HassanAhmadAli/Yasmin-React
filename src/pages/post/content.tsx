@@ -126,8 +126,8 @@ export function Content() {
           </Button>
         </CardFooter>
         <CardContent className="flex grid gap-4">
-          {comments.map((comment, index) => (
-            <Card key={index}>
+          {comments.map((comment) => (
+            <Card key={comment._id}>
               <CardHeader>{comment.text}</CardHeader>
               <span className="font-medium">
                 By
