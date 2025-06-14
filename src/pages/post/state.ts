@@ -35,12 +35,35 @@ interface PostPageState {
   editComment: (_id: number) => void;
   getIsPostFavorite: (_id: string) => boolean,
 }
-
+function saveFavorites(saved: Set<string>) {
+  const savedArray = Array.from(saved);
+  try {
+    localStorage.setItem("savedPostFavorites", JSON.stringify(savedArray))
+  } catch (error) {
+    console.error("Error saving favorites:", error);
+    return;
+  }
+}
+function getFavorites(): Set<string> {
+  try {
+    const stored = localStorage.getItem("savedPostFavorites");
+    if (!stored)
+      return new Set<string>();
+    const parsed = JSON.parse(stored);
+    if (Array.isArray(parsed)) {
+      return new Set<string>(parsed);
+    }
+    return new Set<string>();
+  } catch (error) {
+    console.error("Error getting favorites:", error);
+    return new Set<string>();
+  }
+}
 export const usePostPageState = create<PostPageState>((set, get) => ({
   isLoading: true,
   post: null,
   error: null,
-  favoritedPosts: new Set<string>(),
+  favoritedPosts: getFavorites(),
   comments: getComments(),
   getIsPostFavorite: (_id: string) => {
     return get().favoritedPosts.has(_id);
@@ -49,6 +72,7 @@ export const usePostPageState = create<PostPageState>((set, get) => ({
     set(state => {
       const favoritedPosts = new Set<string>(state.favoritedPosts);
       favoritedPosts.add(post._id);
+      saveFavorites(favoritedPosts);
       return { favoritedPosts };
     })
   },
@@ -56,6 +80,7 @@ export const usePostPageState = create<PostPageState>((set, get) => ({
     set(state => {
       const favoritedPosts = new Set<string>(state.favoritedPosts);
       favoritedPosts.delete(post._id);
+      saveFavorites(favoritedPosts);
       return { favoritedPosts };
     })
   },
@@ -69,6 +94,7 @@ export const usePostPageState = create<PostPageState>((set, get) => ({
       else {
         favoritedPosts.add(post._id);
       }
+      saveFavorites(favoritedPosts);
       return { favoritedPosts };
     })
   },
