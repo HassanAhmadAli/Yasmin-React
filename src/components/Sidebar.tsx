@@ -89,7 +89,12 @@ export function AppSidebar({ children }: { children: React.ReactNode }) {
                 <DropdownMenuLabel>User Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      navigation("/profile");
+                    }}
+                  >
                     <span>Profile</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
